@@ -1,6 +1,6 @@
 # EventApp
 
-EventApp is an Android mobile aplication in which users can create event announcements and share them with thier friends. Is developed using Android Studio. 
+EventApp is an Android mobile aplication in which users can create event announcements and share them with thier friends. Is developed using Android Studio. This app is using a nosql database from Firebase.
 
 **Users can:**
 
