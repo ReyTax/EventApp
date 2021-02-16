@@ -12,7 +12,7 @@
 
 4.Upload a profile image
 
-5.Set and update their personal info
+5.Set and update personal info
 
 
 
