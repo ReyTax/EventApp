@@ -8,7 +8,7 @@
 
 2.Upload announcements
 
-3.Check their announcements history
+3.Check announcements history
 
 4.Upload a profile image
 
