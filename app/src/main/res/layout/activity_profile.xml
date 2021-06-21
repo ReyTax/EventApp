@@ -1,0 +1,331 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bright_grey">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:id="@+id/activity_profile_scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:background="#2C8A46"
+                    android:elevation="10dp"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <Button
+                        android:id="@+id/activity_profile_buttonSettings"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/ic_settings"
+                        android:enabled="false"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/activity_profile_textViewUsername"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/roundarial"
+                        android:text="UserName"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_marginTop="24dp"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardCornerRadius="250dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/activity_profile_cardViewImage"
+                            android:layout_width="125dp"
+                            android:layout_height="125dp"
+                            android:layout_gravity="center"
+                            app:cardBackgroundColor="@color/EventGreen"
+                            app:cardCornerRadius="250dp">
+
+                            <ImageView
+                                android:id="@+id/activity_profile_imageViewProfilePicture"
+                                android:layout_width="75dp"
+                                android:layout_height="75dp"
+                                android:layout_gravity="center"
+                                android:background="@color/EventGreen"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_photo" />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Posts"
+                            android:textColor="#636363"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/activity_profile_textViewNumberPosts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#33BD4E"
+                            android:textSize="20dp" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/constraint"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/activity_profile_textViewAccountInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roundarial"
+                    android:text="Account Info"
+                    android:textColor="@color/dark_green"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView3"
+                    android:layout_width="200dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:elevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_profile_textViewAccountInfo">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_username" />
+
+                        <TextView
+                            android:id="@+id/activity_profile_textViewNameTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Name"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/activity_profile_textViewName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="James Josh Bob"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/activity_profile_textViewNameTitle" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView4"
+                    android:layout_width="200dp"
+                    android:layout_height="125dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/white"
+                    android:elevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView3">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_place" />
+
+                        <TextView
+                            android:id="@+id/activity_profile_textViewCountryTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Country"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/activity_profile_textViewCountry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="America"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/activity_profile_textViewCountryTitle" />
+
+                        <TextView
+                            android:id="@+id/activity_profile_textViewCityTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="City"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/activity_profile_textViewCountry" />
+
+                        <TextView
+                            android:id="@+id/activity_profile_textViewCity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="California"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/activity_profile_textViewCityTitle" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/activity_profile_textViewAbout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roundarial"
+                    android:text="About"
+                    android:textColor="@color/dark_green"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView4" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="35dp"
+                    android:background="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_profile_textViewAbout">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_description" />
+
+                        <TextView
+                            android:id="@+id/activity_profile_textViewDescription"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginBottom="25dp"
+                            android:text="How do I display a TextArea for my android project? From xml, the only choice is TextField, multi lined. But thats editable. I need a TextArea which is only for displaying messages/text can't be edit/input by the user.How do I display a TextArea for my android project? From xml, the only choice is TextField, multi lined. But thats editable. I need a TextArea which is only for displaying messages/text can't be edit/input by the user."
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

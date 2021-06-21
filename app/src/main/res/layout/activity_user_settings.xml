@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green"
+    tools:context=".menuscreen.profile.UserSettingsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/activity_user_settings_scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/layout_shape">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Profile Image"
+                    android:textColor="@color/grey"
+                    android:textSize="25sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="250dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        android:layout_gravity="center"
+                        app:cardBackgroundColor="@color/EventGreen"
+                        app:cardCornerRadius="250dp">
+
+                        <ImageView
+                            android:id="@+id/activity_user_settings_imageViewProfilePicture"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_gravity="center"
+                            android:background="@color/EventGreen"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_photo" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/activity_user_settings_textViewImageInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tap on image to change it"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:visibility="invisible" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Username"
+                    android:textColor="@color/grey"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/activity_user_settings_editTextUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/custom_input_edit_text_enable"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:maxLength="40" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="First Name"
+                    android:textColor="@color/grey"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/activity_user_settings_editTextFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/custom_input_edit_text_enable"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:maxLines="1"
+                    android:maxLength="40" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Last Name"
+                    android:textColor="@color/grey"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/activity_user_settings_editTextLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/custom_input_edit_text_enable"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:maxLines="1"
+                    android:maxLength="40" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Country"
+                    android:textColor="@color/grey"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/activity_user_settings_editTextCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/custom_input_edit_text_enable"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:maxLines="1"
+                    android:maxLength="40" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="City"
+                    android:textColor="@color/grey"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/activity_user_settings_editTextCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/custom_input_edit_text_enable"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:maxLines="1"
+                    android:maxLength="40" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Phone number"
+                    android:textColor="@color/grey"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/activity_user_settings_editTextPhonenumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/custom_input_edit_text_enable"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:maxLines="1"
+                    android:maxLength="40" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Description"
+                    android:textColor="@color/grey"
+                    android:textSize="25sp" />
+
+                <EditText
+                    android:id="@+id/activity_user_settings_editTextDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/custom_input_edit_text_enable"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="text|textMultiLine"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="15dp"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:maxLength="500" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/activity_user_settings_buttonEdit"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_shape"
+                android:text="Edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.02"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/activity_user_settings_buttonSave"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_shape"
+                android:text="Save"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.98"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

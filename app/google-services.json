@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1008587714214",
+    "project_id": "eventapp-b3c80",
+    "storage_bucket": "eventapp-b3c80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008587714214:android:77fa1c3bb8f485fa0f8e67",
+        "android_client_info": {
+          "package_name": "reytax.project.eventapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008587714214-9pjes91rsjg07mcp9430fmo6h55tel0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYIbdXNI1xrDV2cEd2Pz5JIw9b_ZPgrIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008587714214-9pjes91rsjg07mcp9430fmo6h55tel0b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

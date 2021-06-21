@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bright_grey"
+    tools:context=".menuscreen.event.create.CreateEventPageTwoFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:text="TextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/activity_main_editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/custom_input_edit_text_enable"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:hint="@string/hint_email"
+                    android:inputType="text|textMultiLine"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="15dp"
+                    android:text="How do I display a TextArea for my android project? From xml, the only choice is TextField, multi lined. But thats editable. I need a TextArea which is only for displaying messages/text can't be edit/input by the user.How do I display a TextArea for my android project? From xml, the only choice is TextField, multi lined. But thats editable. I need a TextArea which is only for displaying messages/text can't be edit/input by the user."
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,30 @@
+<resources>
+    <!--App-->
+    <string name="app_name">EventApp</string>
+
+    <!--Text-->
+    <string name="text_password_forgot">Forgot password?</string>
+    <string name="text_password_reset_info">Please enter your email address here to get an email with the next steps.</string>
+    <string name="text_register">Register here.</string>
+    <string name="text_login_logo">This is the logo</string>
+    <string name="text_login_back">Go back to login.</string>
+    <string name="text_eventapp">EventApp</string>
+    <string name="text_add_event">Add Event</string>
+
+    <!--Hint-->
+    <string name="hint_password">Password</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_username">Username</string>
+
+    <!--Button-->
+    <string name="button_login">Login</string>
+    <string name="button_register">Register</string>
+    <string name="button_send">Send</string>
+
+
+    <!--Navigation-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
