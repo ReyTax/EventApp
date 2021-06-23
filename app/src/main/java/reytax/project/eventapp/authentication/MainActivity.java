@@ -21,8 +21,8 @@ import reytax.project.eventapp.R;
 import reytax.project.eventapp.menuscreen.MenuScreenActivity;
 import reytax.project.eventapp.utils.activity.RegexVerification;
 import reytax.project.eventapp.utils.activity.Scrollfunction;
-import reytax.project.eventapp.utils.firebase.FirebaseInit;
-import reytax.project.eventapp.utils.firebase.CurrentUserData;
+import reytax.project.eventapp.utils.firebase.FirebaseInitialization;
+import reytax.project.eventapp.utils.firebase.UserDataManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
         buttonRegister = findViewById(R.id.activity_main_buttonRegister);
         progressBar = findViewById(R.id.activity_main_progressBar);
 
-        FirebaseInit.initialize();
-        if(FirebaseInit.getFirebaseAuth().getCurrentUser()!=null && FirebaseInit.getFirebaseUser().isEmailVerified())
+        FirebaseInitialization.initialize();
+        if(FirebaseInitialization.getFirebaseAuth().getCurrentUser()!=null && FirebaseInitialization.getFirebaseUser().isEmailVerified())
         {
-            CurrentUserData.loadData();
+            UserDataManager.loadLocalUserData();
             startActivity(new Intent(this, MenuScreenActivity.class));
             finish();
         }
@@ -125,14 +125,14 @@ public class MainActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        FirebaseInit.getFirebaseAuth().signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        FirebaseInitialization.getFirebaseAuth().signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    FirebaseInit.initialize();
-                    if(FirebaseInit.getFirebaseUser().isEmailVerified()){
+                    FirebaseInitialization.initialize();
+                    if(FirebaseInitialization.getFirebaseUser().isEmailVerified()){
                         Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
-                        CurrentUserData.loadData();
+                        UserDataManager.loadLocalUserData();
                         startActivity(new Intent(context, MenuScreenActivity.class));
                         finish();
                     }
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                     {
                         Toast.makeText(MainActivity.this,"Please verify your email.",Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.INVISIBLE);
-                        FirebaseInit.getFirebaseUser().sendEmailVerification();
+                        FirebaseInitialization.getFirebaseUser().sendEmailVerification();
                     }
                 }
                 else{

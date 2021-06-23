@@ -19,9 +19,9 @@ import com.google.firebase.auth.FirebaseUser;
 import reytax.project.eventapp.R;
 import reytax.project.eventapp.authentication.MainActivity;
 import reytax.project.eventapp.menuscreen.MenuScreenActivity;
-import reytax.project.eventapp.menuscreen.profile.ProfileActivity;
-import reytax.project.eventapp.menuscreen.profile.UserSettingsActivity;
-import reytax.project.eventapp.utils.firebase.FirebaseInit;
+import reytax.project.eventapp.menuscreen.user.profile.ProfileActivity;
+import reytax.project.eventapp.menuscreen.user.profile.UserSettingsActivity;
+import reytax.project.eventapp.utils.firebase.FirebaseInitialization;
 
 public class NavigationBarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -74,28 +74,36 @@ public class NavigationBarActivity extends AppCompatActivity implements Navigati
         switch (item.getItemId()) {
             case R.id.side_menu_home:
                 if (getClass() != MenuScreenActivity.class) {
-                    startActivity(new Intent(getApplicationContext(), MenuScreenActivity.class));
+                    Intent intent = new Intent(getApplicationContext(), MenuScreenActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 }
                 drawerLayout.closeDrawers();
                 break;
             case R.id.side_menu_profile:
-                if (getClass() != ProfileActivity.class) {
+                if (getClass() != ProfileActivity.class && ProfileActivity.getIsThisUserProfile() == false) {
                     Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                    intent.putExtra("userId", FirebaseInit.getFirebaseUser().getUid());
+                    intent.putExtra("uid", FirebaseInitialization.getFirebaseUser().getUid());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
                 }
                 drawerLayout.closeDrawers();
                 break;
             case R.id.side_menu_settings:
                 if (getClass() != UserSettingsActivity.class) {
-                    startActivity(new Intent(getApplicationContext(), UserSettingsActivity.class));
+                    Intent intent = new Intent(getApplicationContext(), UserSettingsActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    startActivity(intent);
                 }
                 drawerLayout.closeDrawers();
                 break;
             case R.id.side_menu_singout:
                 firebaseAuth.signOut();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 drawerLayout.closeDrawers();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
                 break;
 
         }

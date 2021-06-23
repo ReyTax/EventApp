@@ -18,8 +18,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -29,7 +27,7 @@ import java.util.Map;
 import reytax.project.eventapp.R;
 import reytax.project.eventapp.utils.activity.RegexVerification;
 import reytax.project.eventapp.utils.activity.Scrollfunction;
-import reytax.project.eventapp.utils.firebase.FirebaseInit;
+import reytax.project.eventapp.utils.firebase.FirebaseInitialization;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -124,24 +122,25 @@ public class RegisterActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        FirebaseInit.getFirebaseAuth().createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        FirebaseInitialization.getFirebaseAuth().createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    FirebaseInit.initialize();
-                    FirebaseInit.getFirebaseUser().sendEmailVerification();
+                    FirebaseInitialization.initialize();
+                    FirebaseInitialization.getFirebaseUser().sendEmailVerification();
                     firebaseFirestore = FirebaseFirestore.getInstance();
                     Map<String,Object> user = new HashMap<>();
-                    DocumentReference documentReference = firebaseFirestore.collection("users").document(FirebaseInit.getFirebaseUser().getUid());
+                    DocumentReference documentReference = firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid());
                     user.put("email",email);
                     user.put("username",username);
-                    user.put("firstname","");
-                    user.put("lastname","");
-                    user.put("phonenumber","");
-                    user.put("country","");
-                    user.put("city","");
-                    user.put("description","");
-                    user.put("profileimage","");
+                    user.put("firstname",getResources().getString(R.string.text_empty));
+                    user.put("lastname",getResources().getString(R.string.text_empty));
+                    user.put("phonenumber",getResources().getString(R.string.text_empty));
+                    user.put("country",getResources().getString(R.string.text_empty));
+                    user.put("city",getResources().getString(R.string.text_empty));
+                    user.put("description",getResources().getString(R.string.text_empty));
+                    user.put("profileimage",getResources().getString(R.string.text_empty));
+                    user.put("uid",FirebaseInitialization.getFirebaseUser().getUid());
                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

@@ -15,12 +15,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 
 import reytax.project.eventapp.R;
 import reytax.project.eventapp.utils.activity.RegexVerification;
 import reytax.project.eventapp.utils.activity.Scrollfunction;
-import reytax.project.eventapp.utils.firebase.FirebaseInit;
+import reytax.project.eventapp.utils.firebase.FirebaseInitialization;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
@@ -79,7 +78,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        FirebaseInit.getFirebaseAuth().sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
+        FirebaseInitialization.getFirebaseAuth().sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(ResetPasswordActivity.this,"The email has been sent, please check your address.",Toast.LENGTH_SHORT).show();

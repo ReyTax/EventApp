@@ -10,6 +10,34 @@
     <string name="text_login_back">Go back to login.</string>
     <string name="text_eventapp">EventApp</string>
     <string name="text_add_event">Add Event</string>
+    <string name="text_username">Username</string>
+    <string name="text_name">Name</string>
+    <string name="text_firstname">Firstname</string>
+    <string name="text_lastname">Lastname</string>
+    <string name="text_country">Country</string>
+    <string name="text_city">City</string>
+    <string name="text_phonenumber">Phone number</string>
+    <string name="text_description">Description</string>
+    <string name="text_description_info">Describe your event as clearly as possible.</string>
+    <string name="text_profile_image">Profile Image</string>
+    <string name="text_account_info">Account Info</string>
+    <string name="text_about">About</string>
+    <string name="text_empty">empty</string>
+    <string name="text_onsite">Onsite</string>
+    <string name="text_online">Online</string>
+    <string name="text_event_address">Event Address</string>
+    <string name="text_contact">Contact</string>
+    <string name="text_contact_info">It can be anything from phone number to email.</string>
+    <string name="text_date">Date</string>
+    <string name="text_event_title">Event Title</string>
+    <string name="text_event_title_info">Use a short attractive title for your event</string>
+    <string name="text_event_participants_limit">Participants Limit</string>
+    <string name="text_event_participants_limit_info">The limit of participants is between 2 and 1000.</string>
+    <string name="text_search_event">Search Events</string>
+    <string name="text_search_user">Search User</string>
+    <string name="text_friend_list">Friend List</string>
+    <string name="text_calendar">Calendar</string>
+
 
     <!--Hint-->
     <string name="hint_password">Password</string>
@@ -20,6 +48,10 @@
     <string name="button_login">Login</string>
     <string name="button_register">Register</string>
     <string name="button_send">Send</string>
+    <string name="button_edit">Edit</string>
+    <string name="button_save">Save</string>
+    <string name="button_back">Back</string>
+    <string name="button_next">Next</string>
 
 
     <!--Navigation-->
@@ -27,4 +59,5 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

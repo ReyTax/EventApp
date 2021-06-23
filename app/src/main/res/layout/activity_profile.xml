@@ -53,7 +53,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/roundarial"
-                        android:text="UserName"
                         android:textColor="#FFFFFF"
                         android:textSize="30dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -120,7 +119,7 @@
                             android:layout_height="wrap_content"
                             android:text="Total Posts"
                             android:textColor="#636363"
-                            android:textSize="20dp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/activity_profile_textViewNumberPosts"
@@ -128,7 +127,7 @@
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:textColor="#33BD4E"
-                            android:textSize="20dp" />
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -150,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roundarial"
-                    android:text="Account Info"
+                    android:text="@string/text_account_info"
                     android:textColor="@color/dark_green"
                     android:textSize="25sp"
                     android:textStyle="bold"
@@ -186,7 +185,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="Name"
+                            android:text="@string/text_name"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -198,11 +197,12 @@
                             android:id="@+id/activity_profile_textViewName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="James Josh Bob"
                             android:textSize="14sp"
+                            android:text=""
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/activity_profile_textViewNameTitle" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -233,7 +233,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="Country"
+                            android:text="@string/text_country"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -245,7 +245,6 @@
                             android:id="@+id/activity_profile_textViewCountry"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="America"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/activity_profile_textViewCountryTitle" />
@@ -255,7 +254,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:text="City"
+                            android:text="@string/text_city"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -267,7 +266,6 @@
                             android:id="@+id/activity_profile_textViewCity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="California"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/activity_profile_textViewCityTitle" />
@@ -280,7 +278,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/roundarial"
-                    android:text="About"
+                    android:text="@string/text_about"
                     android:textColor="@color/dark_green"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -316,7 +314,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="25dp"
                             android:layout_marginBottom="25dp"
-                            android:text="How do I display a TextArea for my android project? From xml, the only choice is TextField, multi lined. But thats editable. I need a TextArea which is only for displaying messages/text can't be edit/input by the user.How do I display a TextArea for my android project? From xml, the only choice is TextField, multi lined. But thats editable. I need a TextArea which is only for displaying messages/text can't be edit/input by the user."
                             android:textSize="15sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

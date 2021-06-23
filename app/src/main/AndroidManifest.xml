@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/EventApp">
-        <activity android:name=".menuscreen.event.create.CreateEventActivity"></activity>
-        <activity android:name=".menuscreen.profile.UserSettingsActivity" />
-        <activity android:name=".menuscreen.profile.ProfileActivity" />
+        <activity android:name=".menuscreen.user.search.SearchUserActivity"></activity>
+        <activity android:name=".menuscreen.event.search.ShowEventActivity" />
+        <activity android:name=".menuscreen.event.search.SearchEventActivity" />
+        <activity android:name=".menuscreen.event.create.CreateEventActivity" />
+        <activity android:name=".menuscreen.user.profile.UserSettingsActivity" />
+        <activity android:name=".menuscreen.user.profile.ProfileActivity" />
         <activity android:name=".menuscreen.navigation.NavigationBarActivity" />
         <activity android:name=".menuscreen.MenuScreenActivity" />
         <activity android:name=".authentication.ResetPasswordActivity" />

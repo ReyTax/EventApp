@@ -6,7 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public abstract class FirebaseInit {
+public abstract class FirebaseInitialization {
 
     private static FirebaseAuth firebaseAuth;
     private static FirebaseUser firebaseUser;

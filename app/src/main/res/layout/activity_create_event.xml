@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menuscreen.event.create.CreateEventActivity"
-    android:background="@color/dark_green">
+    android:background="@color/dark_green"
+    tools:context=".menuscreen.event.create.CreateEventActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,27 +32,57 @@
             android:layout_alignParentBottom="true">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/activity_create_event_buttonBack"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/button_shape"
-                android:text="Edit"
+                android:text="@string/button_back"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.02"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/activity_create_event_buttonNext"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="8dp"
                 android:background="@drawable/button_shape"
-                android:text="Save"
+                android:text="@string/button_next"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.98"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/activity_create_event_view1"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_dot_indicator_disabled"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/activity_create_event_view2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/activity_create_event_view2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/ic_dot_indicator_disabled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/activity_create_event_view3"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/ic_dot_indicator_disabled"
+                app:layout_constraintStart_toEndOf="@+id/activity_create_event_view2"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>

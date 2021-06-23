@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green"
-    tools:context=".menuscreen.profile.UserSettingsActivity">
+    tools:context=".menuscreen.user.profile.UserSettingsActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Profile Image"
+                    android:text="@string/text_profile_image"
                     android:textColor="@color/grey"
                     android:textSize="25sp" />
 
@@ -82,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Username"
+                    android:text="@string/text_username"
                     android:textColor="@color/grey"
                     android:textSize="25sp" />
 
@@ -115,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="First Name"
+                    android:text="@string/text_firstname"
                     android:textColor="@color/grey"
                     android:textSize="25sp" />
 
@@ -148,7 +148,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Last Name"
+                    android:text="@string/text_lastname"
                     android:textColor="@color/grey"
                     android:textSize="25sp" />
 
@@ -181,7 +181,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Country"
+                    android:text="@string/text_country"
                     android:textColor="@color/grey"
                     android:textSize="25sp" />
 
@@ -214,7 +214,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="City"
+                    android:text="@string/text_city"
                     android:textColor="@color/grey"
                     android:textSize="25sp" />
 
@@ -247,7 +247,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Phone number"
+                    android:text="@string/text_phonenumber"
                     android:textColor="@color/grey"
                     android:textSize="25sp" />
 
@@ -280,7 +280,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Description"
+                    android:text="@string/text_description"
                     android:textColor="@color/grey"
                     android:textSize="25sp" />
 
@@ -317,7 +317,7 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:background="@drawable/button_shape"
-                android:text="Edit"
+                android:text="@string/button_edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.02"
                 app:layout_constraintStart_toStartOf="parent"
@@ -328,7 +328,7 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:background="@drawable/button_shape"
-                android:text="Save"
+                android:text="@string/button_save"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.98"
                 app:layout_constraintStart_toStartOf="parent"

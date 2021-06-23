@@ -4,11 +4,16 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import reytax.project.eventapp.R;
+import reytax.project.eventapp.utils.firebase.EventUploadManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,10 +62,45 @@ public class CreateEventPageTwoFragment extends Fragment {
         }
     }
 
+    private EditText editTextDescription;
+    private TextView textViewCharactersLimit;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_event_page_two, container, false);
+        View view = inflater.inflate(R.layout.fragment_create_event_page_two, container, false);
+
+        editTextDescription = view.findViewById(R.id.fragment_create_event_page_two_editTextDescription);
+        textViewCharactersLimit = view.findViewById(R.id.fragment_create_event_page_two_textViewCharactersLimit);
+
+        editTextDescription.setText(EventUploadManager.getDescription());
+
+        textViewCharactersLimit.setText(editTextDescription.length() + "/1500");
+
+        editTextDescription.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                textViewCharactersLimit.setText(s.length() + "/1500");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        EventUploadManager.setDataSecondFragment(editTextDescription.getText().toString());
+        super.onDestroy();
     }
 }

@@ -2,13 +2,23 @@ package reytax.project.eventapp.menuscreen.event.create;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import reytax.project.eventapp.R;
+import reytax.project.eventapp.utils.activity.InputFilterParticipant;
+import reytax.project.eventapp.utils.firebase.EventUploadManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,12 +65,133 @@ public class CreateEventPageOneFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
+
+    private EditText editTextParticipantsNumber, editTextTitle;
+    private CardView cardViewOnline, cardViewOnsite;
+    private String eventType = "";
+    private ImageView imageViewOnline, imageViewOnsite;
+    private TextView textViewOnline, textViewOnsite;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_event_page_one, container, false);
+        View view = inflater.inflate(R.layout.fragment_create_event_page_one, container, false);
+
+        editTextParticipantsNumber = view.findViewById(R.id.fragment_create_event_page_one_editTextParticipantsNumber);
+        editTextTitle = view.findViewById(R.id.fragment_create_event_page_one_editTextTitle);
+        cardViewOnline = view.findViewById(R.id.fragment_create_event_page_one_cardViewOnline);
+        cardViewOnsite = view.findViewById(R.id.fragment_create_event_page_one_cardViewOnsite);
+        imageViewOnline = view.findViewById(R.id.fragment_create_event_page_one_imageViewOnline);
+        imageViewOnsite = view.findViewById(R.id.fragment_create_event_page_one_imageViewOnsite);
+        textViewOnline = view.findViewById(R.id.fragment_create_event_page_one_textViewOnline);
+        textViewOnsite = view.findViewById(R.id.fragment_create_event_page_one_textViewOnsite);
+
+        imageViewOnline.setImageResource(R.drawable.ic_online_disabled);
+        imageViewOnsite.setImageResource(R.drawable.ic_onsite_disabled);
+        textViewOnline.setTextColor(ContextCompat.getColor(getContext(), R.color.grey));
+        textViewOnsite.setTextColor(ContextCompat.getColor(getContext(), R.color.grey));
+
+        editTextParticipantsNumber.setFilters(new InputFilter[]{new InputFilterParticipant()});
+
+        editTextTitle.setText(EventUploadManager.getTitle());
+        editTextParticipantsNumber.setText(EventUploadManager.getParticipantsNumber());
+        if (EventUploadManager.getEventType().equals("online")) {
+            setOnline();
+        }
+        if (EventUploadManager.getEventType().equals("onsite")) {
+            setOnsite();
+        }
+
+        editTextParticipantsNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                textChange();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                textChange();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                textChange();
+            }
+        });
+
+
+        cardViewOnline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setOnline();
+            }
+        });
+
+        cardViewOnsite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setOnsite();
+            }
+        });
+
+
+        return view;
+    }
+
+    public void setOnline() {
+        eventType = "online";
+        imageViewOnline.setImageResource(R.drawable.ic_online_enabled);
+        imageViewOnsite.setImageResource(R.drawable.ic_onsite_disabled);
+        textViewOnline.setTextColor(ContextCompat.getColor(getContext(), R.color.green));
+        textViewOnsite.setTextColor(ContextCompat.getColor(getContext(), R.color.grey));
+    }
+
+    public void setOnsite() {
+        eventType = "onsite";
+        imageViewOnline.setImageResource(R.drawable.ic_online_disabled);
+        imageViewOnsite.setImageResource(R.drawable.ic_onsite_enabled);
+        textViewOnline.setTextColor(ContextCompat.getColor(getContext(), R.color.grey));
+        textViewOnsite.setTextColor(ContextCompat.getColor(getContext(), R.color.green));
+    }
+
+    public void textChange() {
+
+        if (!editTextParticipantsNumber.getText().toString().equals("")) {
+            if (Integer.parseInt(editTextParticipantsNumber.getText().toString()) < 2) {
+                Thread thread = new Thread() {
+
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (!editTextParticipantsNumber.getText().toString().equals("")) {
+                                    if (Integer.parseInt(editTextParticipantsNumber.getText().toString()) < 2) {
+                                        editTextParticipantsNumber.setText("2");
+                                    }
+                                }
+                            }
+                        });
+                    }
+                };
+                thread.start();
+            }
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        EventUploadManager.setDataFirstFragment(eventType, editTextTitle.getText().toString(), editTextParticipantsNumber.getText().toString());
+        super.onDestroy();
     }
 }

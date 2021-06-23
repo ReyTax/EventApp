@@ -26,7 +26,7 @@
             android:id="@+id/activity_menu_screen_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#339E50"
+            android:background="@color/green"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintBottom_toBottomOf="parent"

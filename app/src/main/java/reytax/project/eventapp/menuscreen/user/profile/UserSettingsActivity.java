@@ -1,4 +1,4 @@
-package reytax.project.eventapp.menuscreen.profile;
+package reytax.project.eventapp.menuscreen.user.profile;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -24,7 +24,7 @@ import reytax.project.eventapp.R;
 import reytax.project.eventapp.menuscreen.navigation.NavigationBarActivity;
 import reytax.project.eventapp.utils.functions.DataConvert;
 import reytax.project.eventapp.utils.firebase.ImageManager;
-import reytax.project.eventapp.utils.firebase.CurrentUserData;
+import reytax.project.eventapp.utils.firebase.UserDataManager;
 
 public class UserSettingsActivity extends NavigationBarActivity {
 
@@ -77,9 +77,9 @@ public class UserSettingsActivity extends NavigationBarActivity {
             public void onClick(View v) {
                 if (hasValidImage) {
                     ImageManager.uploadProfileImage(inputBytes);
-                    CurrentUserData.setBytesProfileImage(inputBytes);
+                    UserDataManager.setBytesProfileImagelocal(inputBytes);
                 }
-                CurrentUserData.uploadProfileData(editTextUsername.getText().toString(), editTextFirstname.getText().toString(), editTextLastname.getText().toString(), editTextCountry.getText().toString(), editTextCity.getText().toString(), editTextPhonenumber.getText().toString(), editTextDescription.getText().toString());
+                UserDataManager.uploadLocalProfileData(editTextUsername.getText().toString(), editTextFirstname.getText().toString(), editTextLastname.getText().toString(), editTextCountry.getText().toString(), editTextCity.getText().toString(), editTextPhonenumber.getText().toString(), editTextDescription.getText().toString());
                 disableEdit();
             }
         });
@@ -99,15 +99,15 @@ public class UserSettingsActivity extends NavigationBarActivity {
     }
 
     private void loadUserData() {
-        editTextUsername.setText(CurrentUserData.getUsername());
-        editTextFirstname.setText(CurrentUserData.getFirstname());
-        editTextLastname.setText(CurrentUserData.getLastname());
-        editTextCountry.setText(CurrentUserData.getCountry());
-        editTextCity.setText(CurrentUserData.getCity());
-        editTextPhonenumber.setText(CurrentUserData.getPhonenumber());
-        editTextDescription.setText(CurrentUserData.getDescription());
-        if (CurrentUserData.getProfileimage().equals("true")) {
-            ImageManager.loadProfileImage(imageViewProfilePicture,CurrentUserData.getBytesProfileImage());
+        editTextUsername.setText(UserDataManager.getUsernamelocal());
+        editTextFirstname.setText(UserDataManager.getFirstnamelocal());
+        editTextLastname.setText(UserDataManager.getLastnamelocal());
+        editTextCountry.setText(UserDataManager.getCountrylocal());
+        editTextCity.setText(UserDataManager.getCitylocal());
+        editTextPhonenumber.setText(UserDataManager.getPhonenumberlocal());
+        editTextDescription.setText(UserDataManager.getDescriptionlocal());
+        if (UserDataManager.getProfileimagelocal().equals("true")) {
+            ImageManager.loadProfileImage(imageViewProfilePicture, UserDataManager.getBytesProfileImagelocal());
         }
     }
 
@@ -135,7 +135,7 @@ public class UserSettingsActivity extends NavigationBarActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                ImageManager.loadProfileImage(imageViewProfilePicture, CurrentUserData.getBytesProfileImage());
+                ImageManager.loadProfileImage(imageViewProfilePicture, UserDataManager.getBytesProfileImagelocal());
             } else {
                 hasValidImage = false;
             }
