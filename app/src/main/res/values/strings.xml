@@ -30,6 +30,8 @@
     <string name="text_contact">Contact</string>
     <string name="text_contact_info">It can be anything from phone number to email.</string>
     <string name="text_date">Date</string>
+    <string name="text_date_start">Start Date</string>
+    <string name="text_date_end">End Date</string>
     <string name="text_event_title">Event Title</string>
     <string name="text_event_title_info">Use a short attractive title for your event</string>
     <string name="text_event_participants_limit">Participants Limit</string>

@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -25,12 +23,12 @@ import androidx.annotation.Nullable;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.WriteAbortedException;
 
 import reytax.project.eventapp.R;
 import reytax.project.eventapp.menuscreen.navigation.NavigationBarActivity;
 import reytax.project.eventapp.utils.activity.DataValidation;
-import reytax.project.eventapp.utils.api.CountryStateCityApi;
+import reytax.project.eventapp.utils.api.filter.ProfanityApi;
+import reytax.project.eventapp.utils.api.places.CountryStateCityApi;
 import reytax.project.eventapp.utils.functions.DataConvert;
 import reytax.project.eventapp.utils.firebase.ImageManager;
 import reytax.project.eventapp.utils.firebase.UserDataManager;
@@ -132,7 +130,6 @@ public class UserSettingsActivity extends NavigationBarActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (DataValidation.checkState(autoCompleteTextViewState.getText().toString()) && CountryStateCityApi.getCities().isEmpty() && lockCityRequest == false) {
                     lockCityRequest = true;
-                    System.out.println(" CHECK THIS ");
                     CountryStateCityApi countryStateCityApi = new CountryStateCityApi();
                     countryStateCityApi.execute("get_cities", autoCompleteTextViewState.getText().toString());
                 }
@@ -165,84 +162,99 @@ public class UserSettingsActivity extends NavigationBarActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lockCityRequest = false;
-                lockStateRequest = false;
+                if(isEditable == true){
+                    lockCityRequest = false;
+                    lockStateRequest = false;
 
 
-                if (DataValidation.checkCountry(autoCompleteTextViewCountry.getText().toString()) && CountryStateCityApi.getStates().isEmpty() && !lockStateRequest) {
-                    lockStateRequest = true;
-                    CountryStateCityApi countryStateCityApi = new CountryStateCityApi();
-                    countryStateCityApi.execute("get_states", autoCompleteTextViewCountry.getText().toString());
-                }
+                    if (DataValidation.checkCountry(autoCompleteTextViewCountry.getText().toString()) && CountryStateCityApi.getStates().isEmpty() && !lockStateRequest) {
+                        lockStateRequest = true;
+                        CountryStateCityApi countryStateCityApi = new CountryStateCityApi();
+                        countryStateCityApi.execute("get_states", autoCompleteTextViewCountry.getText().toString());
+                    }
 
-                int timer = 0;
-                while(CountryStateCityApi.getStates().isEmpty() && timer < 3000)
-                try {
-                    Thread.sleep(50);
-                    timer += 50;
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                    int timer = 0;
+                    while (CountryStateCityApi.getStates().isEmpty() && timer < 3000)
+                        try {
+                            Thread.sleep(50);
+                            timer += 50;
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
 
-                if (DataValidation.checkState(autoCompleteTextViewState.getText().toString()) && CountryStateCityApi.getCities().isEmpty() && !lockCityRequest) {
-                    lockCityRequest = true;
-                    CountryStateCityApi countryStateCityApi = new CountryStateCityApi();
-                    countryStateCityApi.execute("get_cities", autoCompleteTextViewState.getText().toString());
-                }
+                    if (DataValidation.checkState(autoCompleteTextViewState.getText().toString()) && CountryStateCityApi.getCities().isEmpty() && !lockCityRequest) {
+                        lockCityRequest = true;
+                        CountryStateCityApi countryStateCityApi = new CountryStateCityApi();
+                        countryStateCityApi.execute("get_cities", autoCompleteTextViewState.getText().toString());
+                    }
 
-                timer = 0;
-                while(CountryStateCityApi.getCities().isEmpty() && timer < 3000)
-                try {
-                    Thread.sleep(50);
-                    timer += 50;
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                    timer = 0;
+                    while (CountryStateCityApi.getCities().isEmpty() && timer < 3000)
+                        try {
+                            Thread.sleep(50);
+                            timer += 50;
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
-                boolean validData = true;
-                if (hasValidImage) {
-                    ImageManager.uploadProfileImage(inputBytes);
-                    UserDataManager.setBytesProfileImagelocal(inputBytes);
-                }
-                if (!DataValidation.checkUsername(editTextUsername.getText().toString())) {
-                    validData = false;
-                    editTextUsername.setError("Please enter a valid username: \n 1. Between 6 and 12 letters. \n 2. Use only letters and numbers.");
-                }
-                if (!DataValidation.checkName(editTextFirstname.getText().toString())) {
-                    validData = false;
-                    editTextFirstname.setError("Please enter a valid name made only by letters.");
-                }
-                if (!DataValidation.checkName(editTextLastname.getText().toString())) {
-                    validData = false;
-                    editTextFirstname.setError("Please enter a valid name made only by letters.");
-                }
-                if (!DataValidation.checkCountry(autoCompleteTextViewCountry.getText().toString())) {
-                    validData = false;
-                    autoCompleteTextViewCountry.setError("Please enter a valid country.");
-                }
-                if (!DataValidation.checkState(autoCompleteTextViewState.getText().toString())) {
-                    validData = false;
-                    autoCompleteTextViewState.setError("Please enter a valid state.");
-                }
-                if (!DataValidation.checkCity(autoCompleteTextViewCity.getText().toString())) {
-                    validData = false;
-                    autoCompleteTextViewCity.setError("Please enter a valid city.");
-                }
-                if (!DataValidation.checkPhonenumber(editTextPhonenumber.getText().toString())) {
-                    validData = false;
-                    editTextPhonenumber.setError("Please enter a valid phone number.");
-                }
-                if (!DataValidation.checkDescription(editTextDescription.getText().toString())) {
-                    validData = false;
-                    editTextDescription.setError("Profanities not allowed.");
-                }
+                    boolean validData = true;
+                    if (hasValidImage) {
+                        ImageManager.uploadProfileImage(inputBytes);
+                        UserDataManager.setBytesProfileImagelocal(inputBytes);
+                    }
+                    if (!DataValidation.checkUsername(editTextUsername.getText().toString())) {
+                        validData = false;
+                        editTextUsername.setError("Please enter a valid username: \n 1. Between 6 and 12 letters. \n 2. Use only letters and numbers.");
+                    }
+                    if (!DataValidation.checkName(editTextFirstname.getText().toString())) {
+                        validData = false;
+                        editTextFirstname.setError("Please enter a valid name made only by letters.");
+                    }
+                    if (!DataValidation.checkName(editTextLastname.getText().toString())) {
+                        validData = false;
+                        editTextLastname.setError("Please enter a valid name made only by letters.");
+                    }
+                    if (!DataValidation.checkCountry(autoCompleteTextViewCountry.getText().toString())) {
+                        validData = false;
+                        autoCompleteTextViewCountry.setError("Please enter a valid country.");
+                    }
+                    if (!DataValidation.checkState(autoCompleteTextViewState.getText().toString())) {
+                        validData = false;
+                        autoCompleteTextViewState.setError("Please enter a valid state.");
+                    }
+                    if (!DataValidation.checkCity(autoCompleteTextViewCity.getText().toString())) {
+                        validData = false;
+                        autoCompleteTextViewCity.setError("Please enter a valid city.");
+                    }
+                    if (!DataValidation.checkPhonenumber(editTextPhonenumber.getText().toString())) {
+                        validData = false;
+                        editTextPhonenumber.setError("Please enter a valid phone number.");
+                    }
 
-                if (validData) {
-                    UserDataManager.uploadLocalProfileData(editTextUsername.getText().toString(), editTextFirstname.getText().toString(), editTextLastname.getText().toString(), autoCompleteTextViewCountry.getText().toString(), autoCompleteTextViewState.getText().toString(), autoCompleteTextViewCity.getText().toString(), editTextPhonenumber.getText().toString(), editTextDescription.getText().toString());
-                    disableEdit();
-                }
+                    DataValidation.checkDescription(editTextDescription.getText().toString());
+                    timer = 0;
 
+                    while (!ProfanityApi.getIsDone() && timer < 3000) {
+                        try {
+                            Thread.sleep(50);
+                            timer += 50;
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+                    if (ProfanityApi.getIsProfane()) {
+                        validData = false;
+                        editTextDescription.setError("Profanities not allowed.");
+                    }
+
+                    if (validData) {
+                        UserDataManager.uploadLocalProfileData(editTextUsername.getText().toString(), editTextFirstname.getText().toString(), editTextLastname.getText().toString(), autoCompleteTextViewCountry.getText().toString(), autoCompleteTextViewState.getText().toString(), autoCompleteTextViewCity.getText().toString(), editTextPhonenumber.getText().toString(), editTextDescription.getText().toString());
+                        disableEdit();
+                    }
+                }
             }
         });
 

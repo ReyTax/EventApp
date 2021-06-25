@@ -9,13 +9,14 @@ public class UserStructure {
     private String lastname;
     private String phonenumber;
     private String profileimage;
+    private int eventscount;
     private String uid;
 
     private UserStructure() {
 
     }
 
-    private UserStructure(String city, String country, String description, String email, String firstname, String lastname, String phonenumber, String profileimage) {
+    private UserStructure(String city, String country, String description, String email, String firstname, String lastname, String phonenumber, String profileimage, int eventscount) {
         this.city = city;
         this.country = country;
         this.description = description;
@@ -24,6 +25,7 @@ public class UserStructure {
         this.lastname = lastname;
         this.phonenumber = phonenumber;
         this.profileimage = profileimage;
+        this.eventscount = eventscount;
     }
 
     public String getCity() {
@@ -106,5 +108,13 @@ public class UserStructure {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public int getEventscount() {
+        return eventscount;
+    }
+
+    public void setEventscount(int eventscount) {
+        this.eventscount = eventscount;
     }
 }

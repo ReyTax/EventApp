@@ -1,4 +1,4 @@
-package reytax.project.eventapp.structure;
+package reytax.project.eventapp.utils.api.places.structure;
 
 import java.util.ArrayList;
 

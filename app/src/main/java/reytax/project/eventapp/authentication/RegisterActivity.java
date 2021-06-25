@@ -137,9 +137,11 @@ public class RegisterActivity extends AppCompatActivity {
                     user.put("lastname",getResources().getString(R.string.text_empty));
                     user.put("phonenumber",getResources().getString(R.string.text_empty));
                     user.put("country",getResources().getString(R.string.text_empty));
+                    user.put("state",getResources().getString(R.string.text_empty));
                     user.put("city",getResources().getString(R.string.text_empty));
                     user.put("description",getResources().getString(R.string.text_empty));
                     user.put("profileimage",getResources().getString(R.string.text_empty));
+                    user.put("eventscount",0);
                     user.put("uid",FirebaseInitialization.getFirebaseUser().getUid());
                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

@@ -1,4 +1,4 @@
-package reytax.project.eventapp.utils.api;
+package reytax.project.eventapp.utils.api.places;
 
 import android.os.AsyncTask;
 
@@ -14,9 +14,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import reytax.project.eventapp.structure.CityStructure;
-import reytax.project.eventapp.structure.CountryStructure;
-import reytax.project.eventapp.structure.StateStructure;
+import reytax.project.eventapp.utils.api.places.structure.CityStructure;
+import reytax.project.eventapp.utils.api.places.structure.CountryStructure;
+import reytax.project.eventapp.utils.api.places.structure.StateStructure;
 
 public class CountryStateCityApi extends AsyncTask<String, Void, Void> {
 

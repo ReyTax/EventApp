@@ -21,8 +21,7 @@ import reytax.project.eventapp.R;
 import reytax.project.eventapp.menuscreen.MenuScreenActivity;
 import reytax.project.eventapp.utils.activity.RegexVerification;
 import reytax.project.eventapp.utils.activity.Scrollfunction;
-import reytax.project.eventapp.utils.api.CountryStateCityApi;
-import reytax.project.eventapp.utils.api.ProfanityApi;
+import reytax.project.eventapp.utils.api.places.CountryStateCityApi;
 import reytax.project.eventapp.utils.firebase.FirebaseInitialization;
 import reytax.project.eventapp.utils.firebase.UserDataManager;
 
@@ -44,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         CountryStateCityApi countryStateCityApi = new CountryStateCityApi();
         countryStateCityApi.execute("get_token_and_countries");
-
-
 
         scrollView = findViewById(R.id.activity_main_scrollView);
         editTextPassword = findViewById(R.id.activity_main_editTextPassword);

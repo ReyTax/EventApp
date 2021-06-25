@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -65,7 +66,9 @@ public class CreateEventPageThreeOnsiteFragment extends Fragment implements Date
         }
     }
 
-    private EditText editTextCountry, editTextCity, editTextAddress, editTextContact, editTextDate;
+    private EditText editTextAddress, editTextContact, editTextDateStart, editTextDateEnd;
+    private AutoCompleteTextView autoCompleteTextViewCountry, autoCompleteTextViewState, autoCompleteTextViewCity;
+    private int dateOption;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -74,24 +77,38 @@ public class CreateEventPageThreeOnsiteFragment extends Fragment implements Date
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_event_page_three_onsite, container, false);
 
-        editTextCountry = view.findViewById(R.id.fragment_create_event_page_three_onsite_editTextCountry);
-        editTextCity = view.findViewById(R.id.fragment_create_event_page_three_onsite_editTextCity);
+        autoCompleteTextViewCountry = view.findViewById(R.id.fragment_create_event_page_three_onsite_autoCompleteTextViewCountry);
+        autoCompleteTextViewState = view.findViewById(R.id.fragment_create_event_page_three_onsite_autoCompleteTextViewState);
+        autoCompleteTextViewCity = view.findViewById(R.id.fragment_create_event_page_three_onsite_autoCompleteTextViewCity);
         editTextAddress = view.findViewById(R.id.fragment_create_event_page_three_onsite_editTextAddress);
         editTextContact = view.findViewById(R.id.fragment_create_event_page_three_onsite_editTextContact);
-        editTextDate = view.findViewById(R.id.fragment_create_event_page_three_onsite_editTextDate);
+        editTextDateStart = view.findViewById(R.id.fragment_create_event_page_three_onsite_editTextDateStart);
+        editTextDateEnd = view.findViewById(R.id.fragment_create_event_page_three_onsite_editTextDateEnd);
 
-        editTextCountry.setText(EventUploadManager.getCountry());
-        editTextCity.setText(EventUploadManager.getCity());
+        autoCompleteTextViewCountry.setText(EventUploadManager.getCountry());
+        autoCompleteTextViewState.setText(EventUploadManager.getState());
+        autoCompleteTextViewCity.setText(EventUploadManager.getCity());
         editTextAddress.setText(EventUploadManager.getAddress());
         editTextContact.setText(EventUploadManager.getContact());
-        editTextDate.setText(EventUploadManager.getDate());
-        editTextDate.setKeyListener(null);
+        editTextDateStart.setText(EventUploadManager.getDateStart());
+        editTextDateEnd.setText(EventUploadManager.getDateEnd());
+        editTextDateStart.setKeyListener(null);
+        editTextDateEnd.setKeyListener(null);
 
-        editTextDate.setOnTouchListener(new View.OnTouchListener() {
+        editTextDateStart.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_UP)
-                    showDatePickerDialog();
+                if (event.getAction() == MotionEvent.ACTION_UP)
+                    showDatePickerDialog(1);
+                return false;
+            }
+        });
+
+        editTextDateEnd.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP)
+                    showDatePickerDialog(2);
                 return false;
             }
         });
@@ -100,18 +117,26 @@ public class CreateEventPageThreeOnsiteFragment extends Fragment implements Date
     }
 
     public void onDestroy() {
-        EventUploadManager.setDataThirdFragment(editTextCountry.getText().toString(), editTextCity.getText().toString(), editTextAddress.getText().toString(), editTextContact.getText().toString(), editTextDate.getText().toString());
+        EventUploadManager.setDataThirdFragment(autoCompleteTextViewCountry.getText().toString(), autoCompleteTextViewState.getText().toString(), autoCompleteTextViewCity.getText().toString(), editTextAddress.getText().toString(), editTextContact.getText().toString(), editTextDateStart.getText().toString(), editTextDateEnd.getText().toString());
         super.onDestroy();
     }
 
-    public void showDatePickerDialog(){
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),this, Calendar.getInstance().get(Calendar.YEAR),Calendar.getInstance().get(Calendar.MONTH),Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+    private void showDatePickerDialog(int value) {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), this, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
+        dateOption = value;
+
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String date = dayOfMonth + "/" + month + "/" + year;
-        editTextDate.setText(date);
+        String date = null;
+        date = dayOfMonth + "/" + month + "/" + year;
+        if(dateOption == 1){
+            editTextDateStart.setText(date);
+        }
+        else {
+            editTextDateEnd.setText(date);
+        }
     }
 }

@@ -1,4 +1,4 @@
-package reytax.project.eventapp.utils.api;
+package reytax.project.eventapp.utils.api.filter;
 
 import android.os.AsyncTask;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
 public class ProfanityApi extends AsyncTask<String, Void, Void> {
 
     private static boolean isProfane;
-    private static boolean isDone;
+    private static boolean isDone = false;
 
     @Override
     protected Void doInBackground(String... args) {
@@ -26,7 +26,7 @@ public class ProfanityApi extends AsyncTask<String, Void, Void> {
             @Override
             public void run() {
                 isProfane = false;
-                isDone = false;
+
                 Response response = null;
 
                 OkHttpClient client = new OkHttpClient();
@@ -43,13 +43,17 @@ public class ProfanityApi extends AsyncTask<String, Void, Void> {
                     e.printStackTrace();
                 }
                 try {
-                    if(response.body().string().equals("true"))
+                    if (response.body().string().equals("true")) {
+
                         isProfane = true;
+                    }
+
                     isDone = true;
 
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
             }
         };
         thread.start();
@@ -62,5 +66,9 @@ public class ProfanityApi extends AsyncTask<String, Void, Void> {
 
     public static boolean getIsDone() {
         return isDone;
+    }
+
+    public static void setIsDone(boolean isDone) {
+        ProfanityApi.isDone = isDone;
     }
 }

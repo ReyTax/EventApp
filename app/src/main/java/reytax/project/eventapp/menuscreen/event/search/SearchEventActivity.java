@@ -45,9 +45,15 @@ public class SearchEventActivity extends NavigationBarActivity {
 
         Query query = firebaseFirestore.collection("events").orderBy("creationDate", Query.Direction.DESCENDING);
 
+        if (getIntent().getStringExtra("uid") != null) {
+            query = firebaseFirestore.collection("events").orderBy("creationDate", Query.Direction.DESCENDING).whereEqualTo("uid",getIntent().getStringExtra("uid"));
+        }
+
+
+
         FirestoreRecyclerOptions<EventStructure> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<EventStructure>().setQuery(query, EventStructure.class).build();
 
-        firestoreRecyclerAdapter = new FirestoreRecyclerAdapter<EventStructure, EventViewHolder>(firestoreRecyclerOptions){
+        firestoreRecyclerAdapter = new FirestoreRecyclerAdapter<EventStructure, EventViewHolder>(firestoreRecyclerOptions) {
 
             @NonNull
             @Override
@@ -68,11 +74,11 @@ public class SearchEventActivity extends NavigationBarActivity {
                         intent.putExtra("uid", eventStrucutre.getUid());
                         intent.putExtra("title", eventStrucutre.getTitle());
                         intent.putExtra("username", eventStrucutre.getUsername());
-                        intent.putExtra("description",eventStrucutre.getDescription());
-                        intent.putExtra("country",eventStrucutre.getCountry());
-                        intent.putExtra("city",eventStrucutre.getCity());
-                        intent.putExtra("address",eventStrucutre.getAddress());
-                        intent.putExtra("contact",eventStrucutre.getContact());
+                        intent.putExtra("description", eventStrucutre.getDescription());
+                        intent.putExtra("country", eventStrucutre.getCountry());
+                        intent.putExtra("city", eventStrucutre.getCity());
+                        intent.putExtra("address", eventStrucutre.getAddress());
+                        intent.putExtra("contact", eventStrucutre.getContact());
                         startActivity(intent);
                     }
                 });
@@ -87,7 +93,7 @@ public class SearchEventActivity extends NavigationBarActivity {
 
     private class EventViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textViewTitle,textViewUsername;
+        private TextView textViewTitle, textViewUsername;
         private CardView cardView;
 
         public EventViewHolder(@NonNull View itemView) {

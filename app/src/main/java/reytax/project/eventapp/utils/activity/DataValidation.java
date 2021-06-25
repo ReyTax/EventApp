@@ -1,7 +1,7 @@
 package reytax.project.eventapp.utils.activity;
 
-import reytax.project.eventapp.utils.api.CountryStateCityApi;
-import reytax.project.eventapp.utils.api.ProfanityApi;
+import reytax.project.eventapp.utils.api.places.CountryStateCityApi;
+import reytax.project.eventapp.utils.api.filter.ProfanityApi;
 
 public abstract class DataValidation {
 
@@ -41,28 +41,16 @@ public abstract class DataValidation {
         return false;
     }
 
-    public static boolean checkDescription(String value) {
+    public static void checkDescription(String value) {
         checkProfanity(value);
-
-        int timer = 0;
-        while(!ProfanityApi.getIsDone() && timer < 3000)
-            try {
-                Thread.sleep(50);
-                timer += 50;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-        }
-
-        if(ProfanityApi.getIsProfane())
-            return false;
-        return true;
     }
 
 
     public static void checkProfanity(String value) {
         value = value.replace(" ", "%20");
-        System.out.println(value);
+        ProfanityApi.setIsDone(false);
         ProfanityApi profanityApi = new ProfanityApi();
         profanityApi.execute(value);
+
     }
 }

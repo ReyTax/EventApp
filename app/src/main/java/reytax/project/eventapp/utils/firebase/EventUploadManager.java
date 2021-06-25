@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
@@ -14,7 +15,7 @@ import java.util.UUID;
 
 public abstract class EventUploadManager {
 
-    private static String eventType, title, participantsNumber, description, country, city, address, contact, date;
+    private static String eventType, title, participantsNumber, description, country, state, city, address, contact, dateStart, dateEnd;
 
 
     public static void initialization() {
@@ -23,10 +24,12 @@ public abstract class EventUploadManager {
         participantsNumber = "";
         description = "";
         country = "";
+        state = "";
         city = "";
         address = "";
         contact = "";
-        date = "";
+        dateStart = "";
+        dateEnd = "";
     }
 
     public static void setDataFirstFragment(String eventTypeLocal, String titleLocal, String participantsLimitLocal) {
@@ -39,31 +42,37 @@ public abstract class EventUploadManager {
         description = descriptionLocal;
     }
 
-    public static void setDataThirdFragment(String countryLocal, String cityLocal, String addressLocal, String contactLocal, String dataLocal) {
+    public static void setDataThirdFragment(String countryLocal, String stateLocal, String cityLocal, String addressLocal, String contactLocal, String dataStartLocal, String dataEndLocal) {
         country = countryLocal;
+        state = stateLocal;
         city = cityLocal;
         address = addressLocal;
         contact = contactLocal;
-        date = dataLocal;
+        dateStart = dataStartLocal;
+        dateEnd = dataEndLocal;
     }
 
     public static void uploadEventToFirebase(){
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         Map<String,Object> event = new HashMap<>();
-        DocumentReference documentReference = firebaseFirestore.collection("events").document(UUID.randomUUID().toString());
+        String uid = UUID.randomUUID().toString();
+        DocumentReference documentReferenceEvents = firebaseFirestore.collection("events").document(uid);
+        firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid()).update("eventscount", FieldValue.increment(1));
         event.put("eventType",eventType);
         event.put("title",title);
         event.put("participantsNumber",participantsNumber);
         event.put("description",description);
         event.put("country",country);
+        event.put("state",state);
         event.put("city",city);
         event.put("address",address);
         event.put("contact",contact);
-        event.put("date",date);
+        event.put("dateStart",dateStart);
+        event.put("dateEnd",dateEnd);
         event.put("uid", FirebaseInitialization.getFirebaseUser().getUid());
         event.put("username", UserDataManager.getUsernamelocal());
         event.put("creationDate", Calendar.getInstance().getTime());
-        documentReference.set(event).addOnSuccessListener(new OnSuccessListener<Void>() {
+        documentReferenceEvents.set(event).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
 
@@ -97,6 +106,10 @@ public abstract class EventUploadManager {
         return country;
     }
 
+    public static String getState() {
+        return state;
+    }
+
     public static String getCity() {
         return city;
     }
@@ -109,9 +122,11 @@ public abstract class EventUploadManager {
         return contact;
     }
 
-    public static String getDate() {
-        return date;
+    public static String getDateStart() {
+        return dateStart;
     }
 
-
+    public static String getDateEnd() {
+        return dateEnd;
+    }
 }

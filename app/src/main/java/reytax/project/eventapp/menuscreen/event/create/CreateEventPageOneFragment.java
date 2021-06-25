@@ -142,7 +142,7 @@ public class CreateEventPageOneFragment extends Fragment {
         return view;
     }
 
-    public void setOnline() {
+    private void setOnline() {
         eventType = "online";
         imageViewOnline.setImageResource(R.drawable.ic_online_enabled);
         imageViewOnsite.setImageResource(R.drawable.ic_onsite_disabled);
@@ -150,7 +150,7 @@ public class CreateEventPageOneFragment extends Fragment {
         textViewOnsite.setTextColor(ContextCompat.getColor(getContext(), R.color.grey));
     }
 
-    public void setOnsite() {
+    private void setOnsite() {
         eventType = "onsite";
         imageViewOnline.setImageResource(R.drawable.ic_online_disabled);
         imageViewOnsite.setImageResource(R.drawable.ic_onsite_enabled);
@@ -158,7 +158,7 @@ public class CreateEventPageOneFragment extends Fragment {
         textViewOnsite.setTextColor(ContextCompat.getColor(getContext(), R.color.green));
     }
 
-    public void textChange() {
+    private void textChange() {
 
         if (!editTextParticipantsNumber.getText().toString().equals("")) {
             if (Integer.parseInt(editTextParticipantsNumber.getText().toString()) < 2) {
@@ -188,6 +188,8 @@ public class CreateEventPageOneFragment extends Fragment {
             }
         }
     }
+
+
 
     @Override
     public void onDestroy() {

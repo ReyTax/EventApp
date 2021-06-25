@@ -100,6 +100,7 @@ public class SearchUserActivity extends NavigationBarActivity {
                         intent.putExtra("city",userStructure.getCity());
                         intent.putExtra("description",userStructure.getDescription());
                         intent.putExtra("profileimage",userStructure.getProfileimage());
+                        intent.putExtra("eventscount",userStructure.getEventscount());
                         intent.putExtra("bytes",userViewHolder.bytes);
                         startActivity(intent);
                     }

@@ -24,6 +24,7 @@ public abstract class UserDataManager {
     private static String phonenumberlocal = "";
     private static String descriptionlocal = "";
     private static String profileimagelocal = "";
+    private static int eventscountLocal = 0;
     private static byte[] bytesProfileImagelocal;
 
     private static String username = "";
@@ -34,6 +35,7 @@ public abstract class UserDataManager {
     private static String city = "";
     private static String description = "";
     private static String profileimage = "";
+    private static int eventscount = 0;
     private static byte[] bytesProfileImage;
 
 
@@ -45,8 +47,7 @@ public abstract class UserDataManager {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (!documentSnapshot.getData().isEmpty()) {
                     Map<String, Object> userData = documentSnapshot.getData();
-                    setLocalProfileData(userData.get("username").toString(), userData.get("firstname").toString(), userData.get("lastname").toString(), userData.get("country").toString(), userData.get("state").toString() ,userData.get("city").toString(), userData.get("phonenumber").toString(), userData.get("description").toString());
-
+                    setLocalProfileData(userData.get("username").toString(), userData.get("firstname").toString(), userData.get("lastname").toString(), userData.get("country").toString(), userData.get("state").toString() ,userData.get("city").toString(), userData.get("phonenumber").toString(), userData.get("description").toString(), Integer.parseInt(userData.get("eventscount").toString()));
                     profileimagelocal = userData.get("profileimage").toString();
                     bytesProfileImagelocal = null;
 
@@ -71,17 +72,19 @@ public abstract class UserDataManager {
         });
     }
 
+    public static void incrementEventsCountLocal(){
+        eventscountLocal++;
+    }
+
     public static void loadUserData(String uid) {
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         System.out.println(uid);
         firebaseFirestore.collection("users").document(uid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                System.out.println("enter1");
                 if (!documentSnapshot.getData().isEmpty()) {
-                    System.out.println("enter2");
                     Map<String, Object> userData = documentSnapshot.getData();
-                    setProfileData(userData.get("username").toString(), userData.get("firstname").toString(), userData.get("lastname").toString(), userData.get("country").toString(), userData.get("state").toString(), userData.get("city").toString(), userData.get("description").toString());
+                    setProfileData(userData.get("username").toString(), userData.get("firstname").toString(), userData.get("lastname").toString(), userData.get("country").toString(), userData.get("state").toString(), userData.get("city").toString(), userData.get("description").toString(), Integer.parseInt(userData.get("eventscount").toString()));
 
                     profileimage = userData.get("profileimage").toString();
                     bytesProfileImage = null;
@@ -106,7 +109,7 @@ public abstract class UserDataManager {
         });
     }
 
-    public static void setLocalProfileData(String usernamelocal, String firstnamelocal, String lastnamelocal, String countrylocal, String statelocal, String citylocal, String phonenumberlocal, String descriptionlocal) {
+    public static void setLocalProfileData(String usernamelocal, String firstnamelocal, String lastnamelocal, String countrylocal, String statelocal, String citylocal, String phonenumberlocal, String descriptionlocal, int eventsCountLocal) {
         UserDataManager.usernamelocal = usernamelocal;
         UserDataManager.firstnamelocal = firstnamelocal;
         UserDataManager.lastnamelocal = lastnamelocal;
@@ -115,9 +118,10 @@ public abstract class UserDataManager {
         UserDataManager.citylocal = citylocal;
         UserDataManager.phonenumberlocal = phonenumberlocal;
         UserDataManager.descriptionlocal = descriptionlocal;
+        UserDataManager.eventscountLocal = eventsCountLocal;
     }
 
-    public static void setProfileData(String usernamelocal, String firstnamelocal, String lastnamelocal, String countrylocal, String statelocal, String citylocal, String descriptionlocal) {
+    public static void setProfileData(String usernamelocal, String firstnamelocal, String lastnamelocal, String countrylocal, String statelocal, String citylocal, String descriptionlocal, int eventsCountLocal) {
         UserDataManager.username = usernamelocal;
         UserDataManager.firstname = firstnamelocal;
         UserDataManager.lastname = lastnamelocal;
@@ -125,6 +129,7 @@ public abstract class UserDataManager {
         UserDataManager.state = statelocal;
         UserDataManager.city = citylocal;
         UserDataManager.description = descriptionlocal;
+        UserDataManager.eventscount = eventsCountLocal;
     }
 
     public static void uploadLocalProfileData(String username, String firstname, String lastname, String country, String state, String city, String phonenumber, String description) {
@@ -141,7 +146,7 @@ public abstract class UserDataManager {
         user.put("phonenumber", phonenumber);
         user.put("description", description);
         documentReference.set(user, SetOptions.merge());
-        UserDataManager.setLocalProfileData(username, firstname, lastname, country, state, city, phonenumber, description);
+        UserDataManager.setLocalProfileData(username, firstname, lastname, country, state, city, phonenumber, description, eventscount);
     }
 
     public static void setBytesProfileImagelocal(byte[] bytes) {
@@ -224,15 +229,19 @@ public abstract class UserDataManager {
         return statelocal;
     }
 
-    public static void setStatelocal(String statelocal) {
-        UserDataManager.statelocal = statelocal;
-    }
-
     public static String getState() {
         return state;
     }
 
     public static void setState(String state) {
         UserDataManager.state = state;
+    }
+
+    public static int getEventscountLocal() {
+        return eventscountLocal;
+    }
+
+    public static int getEventscount() {
+        return eventscount;
     }
 }

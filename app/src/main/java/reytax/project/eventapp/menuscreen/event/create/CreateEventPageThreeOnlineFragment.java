@@ -23,7 +23,7 @@ import reytax.project.eventapp.utils.firebase.EventUploadManager;
  * Use the {@link CreateEventPageThreeOnlineFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateEventPageThreeOnlineFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
+public class CreateEventPageThreeOnlineFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,7 +65,9 @@ public class CreateEventPageThreeOnlineFragment extends Fragment implements Date
         }
     }
 
-    private EditText editTextContact, editTextDate;
+    private EditText editTextContact, editTextDateStart, editTextDateEnd;
+    private String date;
+    private int dateOption;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -75,17 +77,29 @@ public class CreateEventPageThreeOnlineFragment extends Fragment implements Date
         View view = inflater.inflate(R.layout.fragment_create_event_page_three_online, container, false);
 
         editTextContact = view.findViewById(R.id.fragment_create_event_page_three_online_editTextContact);
-        editTextDate = view.findViewById(R.id.fragment_create_event_page_three_online_editTextDate);
+        editTextDateStart = view.findViewById(R.id.fragment_create_event_page_three_online_editTextDateStart);
+        editTextDateEnd = view.findViewById(R.id.fragment_create_event_page_three_online_editTextDateEnd);
 
         editTextContact.setText(EventUploadManager.getContact());
-        editTextDate.setText(EventUploadManager.getDate());
-        editTextDate.setKeyListener(null);
+        editTextDateStart.setText(EventUploadManager.getDateStart());
+        editTextDateEnd.setText(EventUploadManager.getDateEnd());
+        editTextDateStart.setKeyListener(null);
+        editTextDateEnd.setKeyListener(null);
 
-        editTextDate.setOnTouchListener(new View.OnTouchListener() {
+        editTextDateStart.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_UP)
-                    showDatePickerDialog();
+                if (event.getAction() == MotionEvent.ACTION_UP)
+                    showDatePickerDialog(1);
+                return false;
+            }
+        });
+
+        editTextDateEnd.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP)
+                    showDatePickerDialog(2);
                 return false;
             }
         });
@@ -94,18 +108,26 @@ public class CreateEventPageThreeOnlineFragment extends Fragment implements Date
     }
 
     public void onDestroy() {
-        EventUploadManager.setDataThirdFragment("", "", "", editTextContact.getText().toString(), editTextDate.getText().toString());
+        EventUploadManager.setDataThirdFragment("", "", "", "", editTextContact.getText().toString(), editTextDateStart.getText().toString(), editTextDateEnd.getText().toString());
         super.onDestroy();
     }
 
-    public void showDatePickerDialog(){
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),this, Calendar.getInstance().get(Calendar.YEAR),Calendar.getInstance().get(Calendar.MONTH),Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+    private void showDatePickerDialog(int value) {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), this, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
+        dateOption = value;
+
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String date = dayOfMonth + "/" + month + "/" + year;
-        editTextDate.setText(date);
+        String date = null;
+        date = dayOfMonth + "/" + month + "/" + year;
+        if(dateOption == 1){
+            editTextDateStart.setText(date);
+        }
+        else {
+            editTextDateEnd.setText(date);
+        }
     }
 }
