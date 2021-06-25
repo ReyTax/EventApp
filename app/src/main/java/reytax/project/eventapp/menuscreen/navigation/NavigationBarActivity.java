@@ -81,7 +81,7 @@ public class NavigationBarActivity extends AppCompatActivity implements Navigati
                 drawerLayout.closeDrawers();
                 break;
             case R.id.side_menu_profile:
-                if (getClass() != ProfileActivity.class && ProfileActivity.getIsThisUserProfile() == false) {
+                if (getClass() != ProfileActivity.class || ProfileActivity.getIsThisUserProfile() == false) {
                     Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                     intent.putExtra("uid", FirebaseInitialization.getFirebaseUser().getUid());
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -92,7 +92,6 @@ public class NavigationBarActivity extends AppCompatActivity implements Navigati
             case R.id.side_menu_settings:
                 if (getClass() != UserSettingsActivity.class) {
                     Intent intent = new Intent(getApplicationContext(), UserSettingsActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
                 }
                 drawerLayout.closeDrawers();

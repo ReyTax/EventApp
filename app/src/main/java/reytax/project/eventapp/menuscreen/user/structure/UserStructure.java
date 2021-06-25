@@ -12,6 +12,7 @@ public class UserStructure {
     private String uid;
 
     private UserStructure() {
+
     }
 
     private UserStructure(String city, String country, String description, String email, String firstname, String lastname, String phonenumber, String profileimage) {

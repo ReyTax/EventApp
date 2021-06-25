@@ -60,6 +60,4 @@ public class ShowEventActivity extends NavigationBarActivity {
         textViewContact.setText(contact);
 
     }
-
-
 }

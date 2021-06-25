@@ -5,11 +5,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import reytax.project.eventapp.R;
 import reytax.project.eventapp.menuscreen.navigation.NavigationBarActivity;
 import reytax.project.eventapp.utils.firebase.EventUploadManager;
-
-import static reytax.project.eventapp.utils.firebase.EventUploadManager.uploadEventToFirebase;
 
 public class CreateEventActivity extends NavigationBarActivity {
 
@@ -36,8 +37,6 @@ public class CreateEventActivity extends NavigationBarActivity {
         setIndicatorIcon(currentFragment);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CreateEventPageOneFragment()).commit();
-
-
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +100,22 @@ public class CreateEventActivity extends NavigationBarActivity {
             }
         });
 
+    }
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("jsonData/CountryCityData.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
 
     public void setIndicatorIcon(int value){

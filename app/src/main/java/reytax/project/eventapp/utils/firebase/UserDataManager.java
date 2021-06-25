@@ -19,6 +19,7 @@ public abstract class UserDataManager {
     private static String firstnamelocal = "";
     private static String lastnamelocal = "";
     private static String countrylocal = "";
+    private static String statelocal = "";
     private static String citylocal = "";
     private static String phonenumberlocal = "";
     private static String descriptionlocal = "";
@@ -29,6 +30,7 @@ public abstract class UserDataManager {
     private static String firstname = "";
     private static String lastname = "";
     private static String country = "";
+    private static String state = "";
     private static String city = "";
     private static String description = "";
     private static String profileimage = "";
@@ -43,7 +45,7 @@ public abstract class UserDataManager {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (!documentSnapshot.getData().isEmpty()) {
                     Map<String, Object> userData = documentSnapshot.getData();
-                    setLocalProfileData(userData.get("username").toString(), userData.get("firstname").toString(), userData.get("lastname").toString(), userData.get("country").toString(), userData.get("city").toString(), userData.get("phonenumber").toString(), userData.get("description").toString());
+                    setLocalProfileData(userData.get("username").toString(), userData.get("firstname").toString(), userData.get("lastname").toString(), userData.get("country").toString(), userData.get("state").toString() ,userData.get("city").toString(), userData.get("phonenumber").toString(), userData.get("description").toString());
 
                     profileimagelocal = userData.get("profileimage").toString();
                     bytesProfileImagelocal = null;
@@ -79,7 +81,7 @@ public abstract class UserDataManager {
                 if (!documentSnapshot.getData().isEmpty()) {
                     System.out.println("enter2");
                     Map<String, Object> userData = documentSnapshot.getData();
-                    setProfileData(userData.get("username").toString(), userData.get("firstname").toString(), userData.get("lastname").toString(), userData.get("country").toString(), userData.get("city").toString(), userData.get("description").toString());
+                    setProfileData(userData.get("username").toString(), userData.get("firstname").toString(), userData.get("lastname").toString(), userData.get("country").toString(), userData.get("state").toString(), userData.get("city").toString(), userData.get("description").toString());
 
                     profileimage = userData.get("profileimage").toString();
                     bytesProfileImage = null;
@@ -104,26 +106,28 @@ public abstract class UserDataManager {
         });
     }
 
-    public static void setLocalProfileData(String usernamelocal, String firstnamelocal, String lastnamelocal, String countrylocal, String citylocal, String phonenumberlocal, String descriptionlocal) {
+    public static void setLocalProfileData(String usernamelocal, String firstnamelocal, String lastnamelocal, String countrylocal, String statelocal, String citylocal, String phonenumberlocal, String descriptionlocal) {
         UserDataManager.usernamelocal = usernamelocal;
         UserDataManager.firstnamelocal = firstnamelocal;
         UserDataManager.lastnamelocal = lastnamelocal;
         UserDataManager.countrylocal = countrylocal;
+        UserDataManager.statelocal = statelocal;
         UserDataManager.citylocal = citylocal;
         UserDataManager.phonenumberlocal = phonenumberlocal;
         UserDataManager.descriptionlocal = descriptionlocal;
     }
 
-    public static void setProfileData(String usernamelocal, String firstnamelocal, String lastnamelocal, String countrylocal, String citylocal, String descriptionlocal) {
+    public static void setProfileData(String usernamelocal, String firstnamelocal, String lastnamelocal, String countrylocal, String statelocal, String citylocal, String descriptionlocal) {
         UserDataManager.username = usernamelocal;
         UserDataManager.firstname = firstnamelocal;
         UserDataManager.lastname = lastnamelocal;
         UserDataManager.country = countrylocal;
+        UserDataManager.state = statelocal;
         UserDataManager.city = citylocal;
         UserDataManager.description = descriptionlocal;
     }
 
-    public static void uploadLocalProfileData(String username, String firstname, String lastname, String country, String city, String phonenumber, String description) {
+    public static void uploadLocalProfileData(String username, String firstname, String lastname, String country, String state, String city, String phonenumber, String description) {
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         DocumentReference documentReference;
         documentReference = firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid());
@@ -132,11 +136,12 @@ public abstract class UserDataManager {
         user.put("firstname", firstname);
         user.put("lastname", lastname);
         user.put("country", country);
+        user.put("state", state);
         user.put("city", city);
         user.put("phonenumber", phonenumber);
         user.put("description", description);
         documentReference.set(user, SetOptions.merge());
-        UserDataManager.setLocalProfileData(username, firstname, lastname, country, city, phonenumber, description);
+        UserDataManager.setLocalProfileData(username, firstname, lastname, country, state, city, phonenumber, description);
     }
 
     public static void setBytesProfileImagelocal(byte[] bytes) {
@@ -215,4 +220,19 @@ public abstract class UserDataManager {
         return bytesProfileImage;
     }
 
+    public static String getStatelocal() {
+        return statelocal;
+    }
+
+    public static void setStatelocal(String statelocal) {
+        UserDataManager.statelocal = statelocal;
+    }
+
+    public static String getState() {
+        return state;
+    }
+
+    public static void setState(String state) {
+        UserDataManager.state = state;
+    }
 }

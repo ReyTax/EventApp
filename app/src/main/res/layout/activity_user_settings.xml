@@ -185,8 +185,8 @@
                     android:textColor="@color/grey"
                     android:textSize="25sp" />
 
-                <EditText
-                    android:id="@+id/activity_user_settings_editTextCountry"
+                <AutoCompleteTextView
+                    android:id="@+id/activity_user_settings_autoCompleteTextViewCountry"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="3dp"
@@ -202,7 +202,42 @@
                     android:textAlignment="center"
                     android:textSize="25sp"
                     android:maxLines="1"
-                    android:maxLength="40" />
+                    android:maxLength="40"
+                    android:completionThreshold="1" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/text_state"
+                    android:textColor="@color/grey"
+                    android:textSize="25sp" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/activity_user_settings_autoCompleteTextViewState"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/custom_input_edit_text_enable"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:maxLines="1"
+                    android:maxLength="40"
+                    android:completionThreshold="1" />
 
                 <View
                     android:layout_width="match_parent"
@@ -218,8 +253,8 @@
                     android:textColor="@color/grey"
                     android:textSize="25sp" />
 
-                <EditText
-                    android:id="@+id/activity_user_settings_editTextCity"
+                <AutoCompleteTextView
+                    android:id="@+id/activity_user_settings_autoCompleteTextViewCity"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="3dp"
@@ -311,6 +346,17 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true">
+
+            <ProgressBar
+                android:id="@+id/activity_user_settings_progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:indeterminateDrawable="@drawable/progressbar"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/activity_user_settings_buttonEdit"

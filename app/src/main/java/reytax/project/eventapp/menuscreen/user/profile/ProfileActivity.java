@@ -21,7 +21,6 @@ public class ProfileActivity extends NavigationBarActivity {
     private ImageView imageViewProfilePicture;
     private Button buttonSettings;
     private static Boolean isThisUserProfile = false;
-    public static Activity activityProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,7 @@ public class ProfileActivity extends NavigationBarActivity {
             buttonSettings.setVisibility(View.VISIBLE);
             buttonSettings.setEnabled(true);
         } else if (username != null) {
-            isThisUserProfile = true;
+            isThisUserProfile = false;
             showUserData(getIntent().getStringExtra("username"), getIntent().getStringExtra("firstname") + " " + getIntent().getStringExtra("lastname"), getIntent().getStringExtra("country"), getIntent().getStringExtra("city"), getIntent().getStringExtra("description"), getIntent().getStringExtra("profileimage"), getIntent().getByteArrayExtra("bytes"));
         } else {
             isThisUserProfile = false;

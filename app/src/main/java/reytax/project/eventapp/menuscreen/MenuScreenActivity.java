@@ -5,7 +5,6 @@ import androidx.cardview.widget.CardView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.SearchEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -34,24 +33,32 @@ public class MenuScreenActivity extends NavigationBarActivity {
 
         context = this;
 
+
+
         cardViewCreateEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(context, CreateEventActivity.class));
+                Intent intent = new Intent(getApplicationContext(), CreateEventActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
 
         cardViewSearchEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(context, SearchEventActivity.class));
+                Intent intent = new Intent(getApplicationContext(), SearchEventActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
 
         cardViewSearchUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(context, SearchUserActivity.class));
+                Intent intent = new Intent(getApplicationContext(), SearchUserActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
     }

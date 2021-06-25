@@ -15,6 +15,7 @@
     <string name="text_firstname">Firstname</string>
     <string name="text_lastname">Lastname</string>
     <string name="text_country">Country</string>
+    <string name="text_state">State</string>
     <string name="text_city">City</string>
     <string name="text_phonenumber">Phone number</string>
     <string name="text_description">Description</string>
