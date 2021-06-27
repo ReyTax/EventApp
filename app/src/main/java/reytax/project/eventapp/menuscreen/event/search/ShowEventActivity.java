@@ -123,6 +123,7 @@ public class ShowEventActivity extends NavigationBarActivity {
                 event.put("dateStart", getIntent().getStringExtra("dateStart"));
                 event.put("dateEnd", getIntent().getStringExtra("dateEnd"));
                 event.put("eventType", getIntent().getStringExtra("eventType"));
+                event.put("title", getIntent().getStringExtra("title"));
 
                 documentReference.set(event);
             }
@@ -143,8 +144,11 @@ public class ShowEventActivity extends NavigationBarActivity {
         textViewDateStart.setText(dateStart);
         textViewDateEnd.setText(dateEnd);
         textViewParticipantsNumber.setText(currentParticipantsNumber + "/" + participantsNumber);
-        double progressValue = (double) currentParticipantsNumber/Integer.parseInt(participantsNumber) * 100;
-        progressBarParticipantsNumber.setProgress((int) progressValue);
+        if(!participantsNumber.equals("")){
+            double progressValue = (double) currentParticipantsNumber/Integer.parseInt(participantsNumber) * 100;
+            progressBarParticipantsNumber.setProgress((int) progressValue);
+        }
+
 
     }
 }

@@ -59,6 +59,7 @@ public abstract class EventUploadManager {
         Map<String,Object> event = new HashMap<>();
         String uid = UUID.randomUUID().toString();
         DocumentReference documentReferenceEvents = firebaseFirestore.collection("events").document(uid);
+
         firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid()).update("eventscount", FieldValue.increment(1));
         event.put("eventType",eventType);
         event.put("title",title);
@@ -76,6 +77,7 @@ public abstract class EventUploadManager {
         event.put("username", UserDataManager.getUsernamelocal());
         event.put("creationDate", Calendar.getInstance().getTime());
         event.put("uidEvent", uid);
+
         documentReferenceEvents.set(event).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

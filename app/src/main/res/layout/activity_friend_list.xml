@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menuscreen.user.friendlist.FriendListActivity"
-    android:background="@color/green">
-
+    android:background="@color/green"
+    tools:context=".menuscreen.user.friendlist.FriendListActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -46,13 +45,13 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
+                android:background="@color/green"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:text="Friends"
+                android:textColor="@color/EventGreen"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/view"
-                app:layout_constraintStart_toStartOf="parent"
-                android:background="@color/green"
-                android:textColor="@color/EventGreen"
-                android:foreground="?android:attr/selectableItemBackground"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/activity_friend_list_buttonFriendListPending"
@@ -60,12 +59,12 @@
                 android:layout_width="0dp"
                 android:layout_height="45dp"
                 android:background="@color/green"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:text="Requests"
+                android:textColor="@color/EventGreen"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/view"
-                android:textColor="@color/EventGreen"
-                android:foreground="?android:attr/selectableItemBackground"/>
+                app:layout_constraintStart_toEndOf="@+id/view" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 

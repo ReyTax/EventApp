@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bright_grey"
+    tools:context=".menuscreen.calendar.CalendarTwoFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.sundeepk.compactcalendarview.CompactCalendarView
+            android:id="@+id/fragment_calendar_two_compactCalendarView"
+            android:layout_width="fill_parent"
+            android:layout_height="220dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="25dp"
+            android:paddingRight="10dp"
+            app:compactCalendarBackgroundColor="@color/EventGreen"
+            app:compactCalendarCurrentDayBackgroundColor="@color/green"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/dark_green"
+            app:compactCalendarMultiEventIndicatorColor="@color/dark_green"
+            app:compactCalendarTargetHeight="250dp"
+            app:compactCalendarTextColor="@color/white"
+            app:compactCalendarTextSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+        <TextView
+            android:id="@+id/fragment_calendar_two_textViewMonth"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/dark_green"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/EventGreen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_calendar_two_compactCalendarView"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
+                android:id="@+id/fragment_calendar_two_linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+        <View
+            android:background="@color/EventGreen"
+            android:id="@+id/view5"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_calendar_two_textViewMonth" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

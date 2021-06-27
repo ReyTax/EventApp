@@ -41,8 +41,6 @@ import reytax.project.eventapp.menuscreen.user.structure.UserStructure;
 import reytax.project.eventapp.utils.firebase.FirebaseInitialization;
 import reytax.project.eventapp.utils.firebase.ImageManager;
 
-
-
 public class FriendListActivity extends NavigationBarActivity {
 
     private Button buttonFriendsList, buttonFriendsListPending;

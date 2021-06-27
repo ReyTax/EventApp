@@ -183,7 +183,7 @@ public class FriendListPendingFragment extends Fragment {
                                         firestoreRecyclerAdapterFriendsPending.updateOptions(firestoreRecyclerOptionsPending);
                                         System.out.println(uidFriendsPending);
 
-                                        List<String> list = new ArrayList<>();
+                                        List<String> list = new ArrayList<String>();
                                         list.add(FirebaseInitialization.getFirebaseUser().getUid());
                                         list.add(userStructure.getUid());
                                         java.util.Collections.sort(list);
