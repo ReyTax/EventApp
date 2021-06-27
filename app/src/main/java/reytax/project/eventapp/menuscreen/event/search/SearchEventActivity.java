@@ -72,13 +72,20 @@ public class SearchEventActivity extends NavigationBarActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), ShowEventActivity.class);
                         intent.putExtra("uid", eventStrucutre.getUid());
+                        intent.putExtra("uidEvent", eventStrucutre.getUidEvent());
+                        intent.putExtra("eventType", eventStrucutre.getEventType());
                         intent.putExtra("title", eventStrucutre.getTitle());
                         intent.putExtra("username", eventStrucutre.getUsername());
                         intent.putExtra("description", eventStrucutre.getDescription());
                         intent.putExtra("country", eventStrucutre.getCountry());
+                        intent.putExtra("state", eventStrucutre.getState());
                         intent.putExtra("city", eventStrucutre.getCity());
                         intent.putExtra("address", eventStrucutre.getAddress());
                         intent.putExtra("contact", eventStrucutre.getContact());
+                        intent.putExtra("dateStart", eventStrucutre.getDateStart());
+                        intent.putExtra("dateEnd", eventStrucutre.getDateEnd());
+                        intent.putExtra("participantsNumber", eventStrucutre.getParticipantsNumber());
+                        intent.putExtra("currentParticipantsNumber", eventStrucutre.getCurrentParticipantsNumber());
                         startActivity(intent);
                     }
                 });

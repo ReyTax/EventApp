@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menuscreen.user.search.SearchUserActivity"
+    tools:context=".menuscreen.calendar.CalendarActivity"
     android:background="@color/bright_grey">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_search_user_recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/bright_grey" />
-
+        android:background="@color/white"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

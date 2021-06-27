@@ -83,6 +83,20 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
+            <ProgressBar
+                android:id="@+id/activity_show_event_progressBarParticipantsNumber"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:progress="0"
+                android:progressDrawable="@drawable/progressbar_horizontal" />
+
+            <TextView
+                android:id="@+id/activity_show_event_textViewParticipantsNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0/500"
+                android:gravity="right"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -135,68 +149,202 @@
                 android:layout_marginBottom="24dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
-                app:cardElevation="12dp"
-                >
+                app:cardElevation="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/text_date"
+                        android:textColor="@color/green"
+                        android:textSize="34sp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="From"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp"
+                        android:gravity="center" />
+
+                    <TextView
+                        android:id="@+id/activity_show_event_textViewDateStart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/EventGreen"
+                        android:text="07/12/2021"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/grey"
+                        android:text="to"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/activity_show_event_textViewDateEnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/EventGreen"
+                        android:textSize="18sp"
+                        android:text="21/12/2021"
+                        android:gravity="center"
+                        android:layout_marginBottom="12dp"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="24dp"
+                app:cardElevation="12dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingBottom="12dp">
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        app:cardElevation="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17"
+                        android:layout_marginBottom="12dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="24dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView22"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Address"
+                                android:textSize="20sp"
+                                android:textColor="@color/grey"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:background="@color/grey" />
+
+                            <TextView
+                                android:id="@+id/activity_show_event_textViewCountry"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Romania"
+                                android:textSize="16dp"
+                                android:textColor="@color/dark_green"/>
+
+                            <TextView
+                                android:id="@+id/activity_show_event_textViewState"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bistrita Nasaud"
+                                android:textSize="16dp"
+                                android:textColor="@color/green"/>
+
+                            <TextView
+                                android:id="@+id/activity_show_event_textViewCity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bistrita"
+                                android:textSize="16dp"
+                                android:textColor="@color/green" />
+
+                            <TextView
+                                android:id="@+id/activity_show_event_textViewAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Aela Corilor 16b"
+                                android:textSize="16dp"
+                                android:textColor="@color/EventGreen"/>
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
                     <TextView
                         android:id="@+id/textView17"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:gravity="center"
                         android:text="Location &amp; Contact"
                         android:textColor="@color/green"
                         android:textSize="28sp"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.496"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/activity_show_event_textViewCountry"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Romania"
-                        android:textSize="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardElevation="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                        app:layout_constraintTop_toBottomOf="@+id/cardView6">
 
-                    <TextView
-                        android:id="@+id/activity_show_event_textViewCity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bistrita"
-                        android:textSize="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/activity_show_event_textViewCountry" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="12dp">
 
-                    <TextView
-                        android:id="@+id/activity_show_event_textViewAddress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Aela Corilor 16b"
-                        android:textSize="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/activity_show_event_textViewCity" />
+                            <TextView
+                                android:id="@+id/activity_show_event_textViewContact"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="miguel2914@yahoo.com"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/activity_show_event_textViewContact"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="miguel2914@yahoo.com"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/activity_show_event_textViewAddress" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/activity_show_event_buttonParticipate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Participate"
+                android:textColor="@color/white"
+                android:background="@color/green"
+                android:clickable="true"
+                android:elevation="0dp"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"/>
 
         </LinearLayout>
     </ScrollView>

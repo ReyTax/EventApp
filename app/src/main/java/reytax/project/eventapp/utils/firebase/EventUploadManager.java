@@ -16,12 +16,14 @@ import java.util.UUID;
 public abstract class EventUploadManager {
 
     private static String eventType, title, participantsNumber, description, country, state, city, address, contact, dateStart, dateEnd;
+    private static int currentParticipantsNumber;
 
 
     public static void initialization() {
         eventType = "";
         title = "";
         participantsNumber = "";
+        currentParticipantsNumber = 0;
         description = "";
         country = "";
         state = "";
@@ -61,6 +63,7 @@ public abstract class EventUploadManager {
         event.put("eventType",eventType);
         event.put("title",title);
         event.put("participantsNumber",participantsNumber);
+        event.put("currentParticipantsNumber",0);
         event.put("description",description);
         event.put("country",country);
         event.put("state",state);
@@ -72,6 +75,7 @@ public abstract class EventUploadManager {
         event.put("uid", FirebaseInitialization.getFirebaseUser().getUid());
         event.put("username", UserDataManager.getUsernamelocal());
         event.put("creationDate", Calendar.getInstance().getTime());
+        event.put("uidEvent", uid);
         documentReferenceEvents.set(event).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

@@ -5,7 +5,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,9 +23,6 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.StorageReference;
 
 import reytax.project.eventapp.R;
-import reytax.project.eventapp.menuscreen.event.search.SearchEventActivity;
-import reytax.project.eventapp.menuscreen.event.search.ShowEventActivity;
-import reytax.project.eventapp.menuscreen.event.structure.EventStructure;
 import reytax.project.eventapp.menuscreen.navigation.NavigationBarActivity;
 import reytax.project.eventapp.menuscreen.user.profile.ProfileActivity;
 import reytax.project.eventapp.menuscreen.user.structure.UserStructure;
@@ -38,7 +34,6 @@ public class SearchUserActivity extends NavigationBarActivity {
     private FirebaseFirestore firebaseFirestore;
     private RecyclerView recyclerView;
     private FirestoreRecyclerAdapter firestoreRecyclerAdapter;
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +41,6 @@ public class SearchUserActivity extends NavigationBarActivity {
 
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_search_user, contentFrameLayout);
-        context = this;
 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -112,6 +106,9 @@ public class SearchUserActivity extends NavigationBarActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(firestoreRecyclerAdapter);
+
+
+
     }
 
     private class UserViewHolder extends RecyclerView.ViewHolder {
@@ -126,7 +123,7 @@ public class SearchUserActivity extends NavigationBarActivity {
             imageViewProfilePicture = itemView.findViewById(R.id.search_user_element_imageViewProfilePicture);
             textViewUsername = itemView.findViewById(R.id.search_user_element_textViewUsername);
             textViewCountry = itemView.findViewById(R.id.search_user_element_textViewCountry);
-            cardViewSearchUser = itemView.findViewById(R.id.search_user_element_cardView);
+            cardViewSearchUser = itemView.findViewById(R.id.friend_element_cardView);
 
         }
     }

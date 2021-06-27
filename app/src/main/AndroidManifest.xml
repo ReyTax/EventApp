@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/EventApp">
-        <activity android:name=".menuscreen.user.search.SearchUserActivity"></activity>
+        <activity android:name=".menuscreen.calendar.CalendarActivity"></activity>
+        <activity android:name=".menuscreen.chat.ChatActivity" />
+        <activity android:name=".menuscreen.user.friendlist.FriendListActivity" />
+        <activity android:name=".menuscreen.user.search.SearchUserActivity" />
         <activity android:name=".menuscreen.event.search.ShowEventActivity" />
         <activity android:name=".menuscreen.event.search.SearchEventActivity" />
         <activity android:name=".menuscreen.event.create.CreateEventActivity" />

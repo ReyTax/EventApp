@@ -10,6 +10,15 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import reytax.project.eventapp.R;
 import reytax.project.eventapp.menuscreen.event.search.SearchEventActivity;
 import reytax.project.eventapp.menuscreen.navigation.NavigationBarActivity;
@@ -19,7 +28,7 @@ import reytax.project.eventapp.utils.firebase.ImageManager;
 
 public class ProfileActivity extends NavigationBarActivity {
 
-    private TextView textViewUsername, textViewName, textViewCountry, textViewCity, textViewDescription, textViewEventsCount;
+    private TextView textViewUsername, textViewName, textViewCountry, textViewCity, textViewDescription, textViewEventsCount, textViewAddFriend;
     private ImageView imageViewProfilePicture;
     private Button buttonSettings;
     private static Boolean isThisUserProfile = false;
@@ -41,10 +50,29 @@ public class ProfileActivity extends NavigationBarActivity {
         imageViewProfilePicture = findViewById(R.id.activity_profile_imageViewProfilePicture);
         buttonSettings = findViewById(R.id.activity_profile_buttonSettings);
         constraintLayoutEventscount = findViewById(R.id.activity_profile_constraintLayoutEventsCount);
+        textViewAddFriend = findViewById(R.id.activity_profile_textViewAddFriend);
+
 
 
         String uid = getIntent().getStringExtra("uid");
         String username = getIntent().getStringExtra("username");
+
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+
+        DocumentReference documentReference = firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid()).collection("friends").document(getIntent().getStringExtra("uid"));
+        if( getIntent().getStringExtra("uid").equals(FirebaseInitialization.getFirebaseUser().getUid())){
+            textViewAddFriend.setVisibility(View.INVISIBLE);
+        }
+        else
+            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if(documentSnapshot.exists()){
+                        textViewAddFriend.setVisibility(View.INVISIBLE);
+
+                    }
+                }
+            });
 
         if (uid.equals(FirebaseInitialization.getFirebaseUser().getUid())) {
             isThisUserProfile = true;
@@ -73,6 +101,34 @@ public class ProfileActivity extends NavigationBarActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), UserSettingsActivity.class));
+            }
+        });
+
+        textViewAddFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                DocumentReference documentReference = firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid()).collection("friends").document(getIntent().getStringExtra("uid"));
+                Map<String, Object> user = new HashMap<>();
+                user.put("username", getIntent().getStringExtra("username"));
+                user.put("friendConfirmation",getIntent().getStringExtra("uid"));
+
+                documentReference.set(user);
+
+                documentReference = firebaseFirestore.collection("users").document(getIntent().getStringExtra("uid")).collection("friends").document(FirebaseInitialization.getFirebaseUser().getUid());
+                user = new HashMap<>();
+                user.put("username", UserDataManager.getUsernamelocal());
+                user.put("friendConfirmation",getIntent().getStringExtra("uid"));
+
+                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        textViewAddFriend.setVisibility(View.INVISIBLE);
+                    }
+                });
+
+
             }
         });
     }
