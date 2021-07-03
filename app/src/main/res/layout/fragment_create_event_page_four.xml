@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menuscreen.event.create.CreateEventPageFourFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".menuscreen.event.create.CreateEventPageFourFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,9 +18,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Are you sure you want to post this event?"
+            android:textColor="@color/green"
             android:textSize="36sp"
             android:textStyle="bold"
-            android:textColor="@color/green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.52"

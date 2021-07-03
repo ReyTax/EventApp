@@ -41,11 +41,12 @@ public class ChatActivity extends NavigationBarActivity {
     private Button buttonSend;
     private EditText editTextMessage;
     private int count = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.activity_navigation_bar_frameLayout);
         getLayoutInflater().inflate(R.layout.activity_chat, contentFrameLayout);
 
         buttonSend = findViewById(R.id.activity_chat_buttonSend);
@@ -58,7 +59,6 @@ public class ChatActivity extends NavigationBarActivity {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-
 
 
         Query query = firebaseFirestore.collection("chats").document(getIntent().getStringExtra("uidChat")).collection("messages").orderBy("creationDate");
@@ -87,7 +87,7 @@ public class ChatActivity extends NavigationBarActivity {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
-                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
             }
         };
 
@@ -115,7 +115,7 @@ public class ChatActivity extends NavigationBarActivity {
 
     private class UserViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textViewUsername,textViewMessage;
+        private TextView textViewUsername, textViewMessage;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);

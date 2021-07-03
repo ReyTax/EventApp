@@ -72,12 +72,12 @@
                 android:id="@+id/friend_element_imageViewChat"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
+                android:background="@color/dark_green"
+                android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_chat"
-                android:background="@color/dark_green"
-                android:padding="8dp"/>
+                app:srcCompat="@drawable/ic_chat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

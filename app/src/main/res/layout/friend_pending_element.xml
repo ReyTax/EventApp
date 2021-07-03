@@ -52,16 +52,16 @@
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
-                android:text="Accept"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/view"
-                app:layout_constraintStart_toStartOf="parent"
-                android:textColor="@color/EventGreen"
                 android:background="@color/green"
                 android:clickable="true"
                 android:elevation="0dp"
                 android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"/>
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="Accept"
+                android:textColor="@color/EventGreen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/view"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/friend_pending_element_buttonReject"
@@ -69,15 +69,15 @@
                 android:layout_width="0dp"
                 android:layout_height="45dp"
                 android:background="@color/green"
-                android:textColor="@color/EventGreen"
-                android:text="Reject"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/view"
                 android:clickable="true"
                 android:elevation="0dp"
                 android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"/>
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="Reject"
+                android:textColor="@color/EventGreen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

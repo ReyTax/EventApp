@@ -20,6 +20,7 @@ import reytax.project.eventapp.R;
 import reytax.project.eventapp.utils.activity.RegexVerification;
 import reytax.project.eventapp.utils.activity.Scrollfunction;
 import reytax.project.eventapp.utils.firebase.FirebaseInitialization;
+import reytax.project.eventapp.utils.firebase.UserDataManager;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
@@ -66,12 +67,12 @@ public class ResetPasswordActivity extends AppCompatActivity {
         });
     }
 
-    private void fireBaseResetPassword(){
+    private void fireBaseResetPassword() {
         String email;
         email = editTextEmail.getText().toString().trim();
 
 
-        if(!RegexVerification.isValidEmail(email)){
+        if (!RegexVerification.isValidEmail(email)) {
             editTextEmail.setError("Please enter a valid email.");
             return;
         }
@@ -81,7 +82,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         FirebaseInitialization.getFirebaseAuth().sendPasswordResetEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(ResetPasswordActivity.this,"The email has been sent, please check your address.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ResetPasswordActivity.this, "The email has been sent, please check your address.", Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
                 startActivity(new Intent(context, MainActivity.class));
                 finish();
@@ -89,7 +90,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ResetPasswordActivity.this,"Error sending the email, please check again the email.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ResetPasswordActivity.this, "Error sending the email, please check again the email.", Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });

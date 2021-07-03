@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ScrollView scrollView;
     private EditText editTextPassword, editTextEmail;
-    private Button buttonLogin,buttonResetPassword,buttonRegister;
+    private Button buttonLogin, buttonResetPassword, buttonRegister;
     private ProgressBar progressBar;
 
     private Context context;
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         context = this;
 
         CountryStateCityApi countryStateCityApi = new CountryStateCityApi();
-        countryStateCityApi.execute("get_token_and_countries");
+        countryStateCityApi.execute("get_countries");
 
         scrollView = findViewById(R.id.activity_main_scrollView);
         editTextPassword = findViewById(R.id.activity_main_editTextPassword);
@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.activity_main_progressBar);
 
         FirebaseInitialization.initialize();
-        if(FirebaseInitialization.getFirebaseAuth().getCurrentUser()!=null && FirebaseInitialization.getFirebaseUser().isEmailVerified())
-        {
+        if (FirebaseInitialization.getFirebaseAuth().getCurrentUser() != null && FirebaseInitialization.getFirebaseUser().isEmailVerified()) {
             UserDataManager.loadLocalUserData();
             startActivity(new Intent(this, MenuScreenActivity.class));
             finish();
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         editTextPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
+                if (hasFocus)
                     Scrollfunction.scrollDown(scrollView);
             }
         });
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         editTextEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
+                if (hasFocus)
                     Scrollfunction.scrollDown(scrollView);
             }
         });
@@ -107,48 +106,44 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void fireBaseLogin(){
-        String email,password;
+    private void fireBaseLogin() {
+        String email, password;
         email = editTextEmail.getText().toString().trim();
         password = editTextPassword.getText().toString().trim();
 
         boolean validData = true;
 
-        if(!RegexVerification.isValidPassword(password))
-        {
+        if (!RegexVerification.isValidPassword(password)) {
             editTextPassword.setError("Please enter a valid password:\n 1. Between 8 and 15 characters.\n 2. At least one upper and one lower case letter.\n 3. At least a number.");
             validData = false;
         }
-        if(!RegexVerification.isValidEmail(email)){
+        if (!RegexVerification.isValidEmail(email)) {
             editTextEmail.setError("Please enter a valid email.");
             validData = false;
         }
-        if(validData == false){
+        if (validData == false) {
             return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
 
-        FirebaseInitialization.getFirebaseAuth().signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        FirebaseInitialization.getFirebaseAuth().signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     FirebaseInitialization.initialize();
-                    if(FirebaseInitialization.getFirebaseUser().isEmailVerified()){
-                        Toast.makeText(MainActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
+                    if (FirebaseInitialization.getFirebaseUser().isEmailVerified()) {
+                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         UserDataManager.loadLocalUserData();
                         startActivity(new Intent(context, MenuScreenActivity.class));
                         finish();
-                    }
-                    else
-                    {
-                        Toast.makeText(MainActivity.this,"Please verify your email.",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Please verify your email.", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.INVISIBLE);
                         FirebaseInitialization.getFirebaseUser().sendEmailVerification();
                     }
-                }
-                else{
-                    Toast.makeText(MainActivity.this,"Login Failed",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }

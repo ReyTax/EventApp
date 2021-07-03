@@ -5,240 +5,236 @@
     android:id="@+id/activity_menu_screen_drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/green"
     tools:context=".menuscreen.MenuScreenActivity"
-    tools:openDrawer="end"
-    android:background="@color/green">
+    tools:openDrawer="end">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_shape"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+
+            <androidx.gridlayout.widget.GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_menu_screen_toolbar"
-                app:layout_constraintVertical_bias="0.0">
+                android:layout_height="match_parent"
+                app:alignmentMode="alignMargins"
+                app:columnCount="2"
+                app:columnOrderPreserved="false"
+                app:rowCount="3"
+                app:useDefaultMargins="false">
 
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/layout_shape"
-                    app:layout_constraintTop_toTopOf="parent">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/activity_menu_screen_cardViewAddEvent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="13dp"
+                    android:clickable="true"
+                    android:elevation="0dp"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="12dp"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_row="0"
+                    app:layout_rowWeight="1">
 
 
-                        <androidx.gridlayout.widget.GridLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:alignmentMode="alignMargins"
-                            app:columnCount="2"
-                            app:columnOrderPreserved="false"
-                            app:rowCount="3"
-                            app:useDefaultMargins="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/activity_menu_screen_imageViewAddEvent"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:srcCompat="@drawable/ic_post_add" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_add_event"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/activity_menu_screen_cardViewSearchEvent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="13dp"
+                    android:clickable="true"
+                    android:elevation="0dp"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="12dp"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_row="0"
+                    app:layout_rowWeight="1">
 
 
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/activity_menu_screen_cardViewAddEvent"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_margin="13dp"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="12dp"
-                                app:layout_column="0"
-                                app:layout_columnWeight="1"
-                                app:layout_row="0"
-                                app:layout_rowWeight="1"
-                                android:clickable="true"
-                                android:elevation="0dp"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/qwee"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:srcCompat="@drawable/ic_search" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_search_event"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/activity_menu_screen_cardViewSearchUser"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="13dp"
+                    android:clickable="true"
+                    android:elevation="0dp"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="12dp"
+                    app:layout_column="1"
+                    app:layout_columnWeight="1"
+                    app:layout_row="1"
+                    app:layout_rowWeight="1">
 
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                                    <ImageView
-                                        android:id="@+id/activity_menu_screen_imageViewAddEvent"
-                                        android:layout_width="100dp"
-                                        android:layout_height="100dp"
-                                        app:srcCompat="@drawable/ic_post_add" />
+                        <ImageView
+                            android:id="@+id/qweeee"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:srcCompat="@drawable/ic_search_user" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/text_add_event"
-                                        android:textSize="18sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_search_user"
+                            android:textSize="18sp" />
 
-                                </LinearLayout>
+                    </LinearLayout>
 
-                            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/activity_menu_screen_cardViewSearchEvent"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_margin="13dp"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="12dp"
-                                app:layout_column="1"
-                                app:layout_columnWeight="1"
-                                app:layout_row="0"
-                                app:layout_rowWeight="1"
-                                android:clickable="true"
-                                android:elevation="0dp"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground">
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:id="@+id/qwee"
-                                        android:layout_width="100dp"
-                                        android:layout_height="100dp"
-                                        app:srcCompat="@drawable/ic_search" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/text_search_event"
-                                        android:textSize="18sp" />
-
-                                </LinearLayout>
-
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/activity_menu_screen_cardViewSearchUser"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_margin="13dp"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="12dp"
-                                app:layout_column="1"
-                                app:layout_columnWeight="1"
-                                app:layout_row="1"
-                                app:layout_rowWeight="1"
-                                android:clickable="true"
-                                android:elevation="0dp"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/activity_menu_screen_cardViewFriendList"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="13dp"
+                    android:clickable="true"
+                    android:elevation="0dp"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="12dp"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_row="1"
+                    app:layout_rowWeight="1">
 
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                                    <ImageView
-                                        android:id="@+id/qweeee"
-                                        android:layout_width="100dp"
-                                        android:layout_height="100dp"
-                                        app:srcCompat="@drawable/ic_search_user" />
+                        <ImageView
+                            android:id="@+id/qweeeeeee"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:srcCompat="@drawable/ic_friendlist" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/text_search_user"
-                                        android:textSize="18sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_friend_list"
+                            android:textSize="18sp" />
 
-                                </LinearLayout>
+                    </LinearLayout>
 
-                            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/activity_menu_screen_cardViewFriendList"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_margin="13dp"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="12dp"
-                                app:layout_column="0"
-                                app:layout_columnWeight="1"
-                                app:layout_row="1"
-                                app:layout_rowWeight="1"
-                                android:clickable="true"
-                                android:elevation="0dp"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground">
-
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:id="@+id/qweeeeeee"
-                                        android:layout_width="100dp"
-                                        android:layout_height="100dp"
-                                        app:srcCompat="@drawable/ic_friendlist" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/text_friend_list"
-                                        android:textSize="18sp" />
-
-                                </LinearLayout>
-
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/activity_menu_screen_cardViewCalendar"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_margin="13dp"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="12dp"
-                                app:layout_column="0"
-                                app:layout_columnWeight="1"
-                                app:layout_row="2"
-                                app:layout_rowWeight="1"
-                                android:clickable="true"
-                                android:elevation="0dp"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/activity_menu_screen_cardViewCalendar"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="13dp"
+                    android:clickable="true"
+                    android:elevation="0dp"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="12dp"
+                    app:layout_column="0"
+                    app:layout_columnWeight="1"
+                    app:layout_row="2"
+                    app:layout_rowWeight="1">
 
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                                    <ImageView
-                                        android:id="@+id/imagerweeView"
-                                        android:layout_width="100dp"
-                                        android:layout_height="100dp"
-                                        app:srcCompat="@drawable/ic_calendar" />
+                        <ImageView
+                            android:id="@+id/imagerweeView"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:srcCompat="@drawable/ic_calendar" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/text_calendar"
-                                        android:textSize="18sp" />
-                                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/text_calendar"
+                            android:textSize="18sp" />
+                    </LinearLayout>
 
-                            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-                            
-                        </androidx.gridlayout.widget.GridLayout>
 
-                </RelativeLayout>
+            </androidx.gridlayout.widget.GridLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

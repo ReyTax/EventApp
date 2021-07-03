@@ -190,7 +190,6 @@ public class CreateEventPageOneFragment extends Fragment {
     }
 
 
-
     @Override
     public void onDestroy() {
         EventUploadManager.setDataFirstFragment(eventType, editTextTitle.getText().toString(), editTextParticipantsNumber.getText().toString());

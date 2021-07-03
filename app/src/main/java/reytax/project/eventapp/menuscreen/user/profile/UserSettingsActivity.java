@@ -53,7 +53,7 @@ public class UserSettingsActivity extends NavigationBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.activity_navigation_bar_frameLayout);
         getLayoutInflater().inflate(R.layout.activity_user_settings, contentFrameLayout);
 
         editTextUsername = findViewById(R.id.activity_user_settings_editTextUsername);
@@ -69,7 +69,7 @@ public class UserSettingsActivity extends NavigationBarActivity {
         buttonSave = findViewById(R.id.activity_user_settings_buttonSave);
         imageViewProfilePicture = findViewById(R.id.activity_user_settings_imageViewProfilePicture);
 
-        setautoCompleteTextViewCountryAdapter();
+        setAutoCompleteTextViewCountryAdapter();
 
         autoCompleteTextViewCountry.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -162,7 +162,7 @@ public class UserSettingsActivity extends NavigationBarActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isEditable == true){
+                if (isEditable == true) {
                     lockCityRequest = false;
                     lockStateRequest = false;
 
@@ -215,6 +215,7 @@ public class UserSettingsActivity extends NavigationBarActivity {
                         validData = false;
                         editTextLastname.setError("Please enter a valid name made only by letters.");
                     }
+
                     if (!DataValidation.checkCountry(autoCompleteTextViewCountry.getText().toString())) {
                         validData = false;
                         autoCompleteTextViewCountry.setError("Please enter a valid country.");
@@ -227,6 +228,8 @@ public class UserSettingsActivity extends NavigationBarActivity {
                         validData = false;
                         autoCompleteTextViewCity.setError("Please enter a valid city.");
                     }
+
+
                     if (!DataValidation.checkPhonenumber(editTextPhonenumber.getText().toString())) {
                         validData = false;
                         editTextPhonenumber.setError("Please enter a valid phone number.");
@@ -237,8 +240,9 @@ public class UserSettingsActivity extends NavigationBarActivity {
 
                     while (!ProfanityApi.getIsDone() && timer < 3000) {
                         try {
-                            Thread.sleep(50);
-                            timer += 50;
+                            Thread.sleep(1);
+                            timer += 1;
+                            System.out.println(timer);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -316,7 +320,7 @@ public class UserSettingsActivity extends NavigationBarActivity {
         }
     }
 
-    private void setautoCompleteTextViewCountryAdapter() {
+    private void setAutoCompleteTextViewCountryAdapter() {
         ArrayAdapter<String> arrayAdapter;
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, CountryStateCityApi.getCountries());
         autoCompleteTextViewCountry.setThreshold(1);

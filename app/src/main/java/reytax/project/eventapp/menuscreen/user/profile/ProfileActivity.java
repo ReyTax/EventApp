@@ -38,7 +38,7 @@ public class ProfileActivity extends NavigationBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.activity_navigation_bar_frameLayout);
         getLayoutInflater().inflate(R.layout.activity_profile, contentFrameLayout);
 
         textViewUsername = findViewById(R.id.activity_profile_textViewUsername);
@@ -53,21 +53,19 @@ public class ProfileActivity extends NavigationBarActivity {
         textViewAddFriend = findViewById(R.id.activity_profile_textViewAddFriend);
 
 
-
         String uid = getIntent().getStringExtra("uid");
         String username = getIntent().getStringExtra("username");
 
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
         DocumentReference documentReference = firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid()).collection("friends").document(getIntent().getStringExtra("uid"));
-        if( getIntent().getStringExtra("uid").equals(FirebaseInitialization.getFirebaseUser().getUid())){
+        if (getIntent().getStringExtra("uid").equals(FirebaseInitialization.getFirebaseUser().getUid())) {
             textViewAddFriend.setVisibility(View.INVISIBLE);
-        }
-        else
+        } else
             documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if(documentSnapshot.exists()){
+                    if (documentSnapshot.exists()) {
                         textViewAddFriend.setVisibility(View.INVISIBLE);
 
                     }
@@ -81,7 +79,7 @@ public class ProfileActivity extends NavigationBarActivity {
             buttonSettings.setEnabled(true);
         } else if (username != null) {
             isThisUserProfile = false;
-            showUserData(getIntent().getStringExtra("username"), getIntent().getStringExtra("firstname") + " " + getIntent().getStringExtra("lastname"), getIntent().getStringExtra("country"), getIntent().getStringExtra("city"), getIntent().getStringExtra("description"), getIntent().getStringExtra("profileimage"), getIntent().getIntExtra("eventscount",0), getIntent().getByteArrayExtra("bytes"));
+            showUserData(getIntent().getStringExtra("username"), getIntent().getStringExtra("firstname") + " " + getIntent().getStringExtra("lastname"), getIntent().getStringExtra("country"), getIntent().getStringExtra("city"), getIntent().getStringExtra("description"), getIntent().getStringExtra("profileimage"), getIntent().getIntExtra("eventscount", 0), getIntent().getByteArrayExtra("bytes"));
         } else {
             isThisUserProfile = false;
             showUserData(UserDataManager.getUsername(), UserDataManager.getFirstname() + " " + UserDataManager.getLastname(), UserDataManager.getCountry(), UserDataManager.getCity(), UserDataManager.getDescription(), UserDataManager.getProfileimage(), UserDataManager.getEventscount(), UserDataManager.getBytesProfileImage());
@@ -112,14 +110,14 @@ public class ProfileActivity extends NavigationBarActivity {
                 DocumentReference documentReference = firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid()).collection("friends").document(getIntent().getStringExtra("uid"));
                 Map<String, Object> user = new HashMap<>();
                 user.put("username", getIntent().getStringExtra("username"));
-                user.put("friendConfirmation",getIntent().getStringExtra("uid"));
+                user.put("friendConfirmation", getIntent().getStringExtra("uid"));
 
                 documentReference.set(user);
 
                 documentReference = firebaseFirestore.collection("users").document(getIntent().getStringExtra("uid")).collection("friends").document(FirebaseInitialization.getFirebaseUser().getUid());
                 user = new HashMap<>();
                 user.put("username", UserDataManager.getUsernamelocal());
-                user.put("friendConfirmation",getIntent().getStringExtra("uid"));
+                user.put("friendConfirmation", getIntent().getStringExtra("uid"));
 
                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

@@ -97,13 +97,13 @@
                     android:ems="10"
                     android:enabled="false"
                     android:inputType="text"
+                    android:maxLength="40"
                     android:maxLines="1"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:text=""
                     android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:maxLength="40" />
+                    android:textSize="25sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -130,13 +130,13 @@
                     android:ems="10"
                     android:enabled="false"
                     android:inputType="text"
+                    android:maxLength="40"
+                    android:maxLines="1"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:text=""
                     android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:maxLines="1"
-                    android:maxLength="40" />
+                    android:textSize="25sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -163,13 +163,13 @@
                     android:ems="10"
                     android:enabled="false"
                     android:inputType="text"
+                    android:maxLength="40"
+                    android:maxLines="1"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:text=""
                     android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:maxLines="1"
-                    android:maxLength="40" />
+                    android:textSize="25sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -192,18 +192,18 @@
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="3dp"
                     android:background="@drawable/custom_input_edit_text_enable"
+                    android:completionThreshold="1"
                     android:drawablePadding="12dp"
                     android:ems="10"
                     android:enabled="false"
                     android:inputType="text"
+                    android:maxLength="40"
+                    android:maxLines="1"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:text=""
                     android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:maxLines="1"
-                    android:maxLength="40"
-                    android:completionThreshold="1" />
+                    android:textSize="25sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -226,18 +226,18 @@
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="3dp"
                     android:background="@drawable/custom_input_edit_text_enable"
+                    android:completionThreshold="1"
                     android:drawablePadding="12dp"
                     android:ems="10"
                     android:enabled="false"
                     android:inputType="text"
+                    android:maxLength="40"
+                    android:maxLines="1"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:text=""
                     android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:maxLines="1"
-                    android:maxLength="40"
-                    android:completionThreshold="1" />
+                    android:textSize="25sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -264,13 +264,13 @@
                     android:ems="10"
                     android:enabled="false"
                     android:inputType="text"
+                    android:maxLength="40"
+                    android:maxLines="1"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:text=""
                     android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:maxLines="1"
-                    android:maxLength="40" />
+                    android:textSize="25sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -297,13 +297,13 @@
                     android:ems="10"
                     android:enabled="false"
                     android:inputType="text"
+                    android:maxLength="40"
+                    android:maxLines="1"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:text=""
                     android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:maxLines="1"
-                    android:maxLength="40" />
+                    android:textSize="25sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -330,13 +330,13 @@
                     android:ems="10"
                     android:enabled="false"
                     android:inputType="text|textMultiLine"
+                    android:maxLength="500"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:paddingBottom="15dp"
                     android:text=""
                     android:textAlignment="center"
-                    android:textSize="15sp"
-                    android:maxLength="500" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
         </ScrollView>

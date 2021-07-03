@@ -6,7 +6,7 @@ public abstract class RegexVerification {
     private static final String REG_USERNAME = "^(?=.*[a-z])[a-zA-Z\\d]{6,12}$";
     private static final String REG_EMAIL = "^(.*[a-zA-Z1-9_.])@(.*[a-zA-Z1-9])[.](.*[a-zA-Z1-9])$";
     private static final String REG_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,15}$";
-    private static final String REG_NAME =  "^[\\p{L} .'-]+$";
+    private static final String REG_NAME = "^[\\p{L} .'-]+$";
     private static final String REG_PHONENUMBER = "^[0-9]{10}$";
 
     public final static boolean isValidUsername(String target) {

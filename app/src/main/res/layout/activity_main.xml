@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".authentication.MainActivity"
-    >
+    tools:context=".authentication.MainActivity">
 
     <ScrollView
         android:id="@+id/activity_main_scrollView"
@@ -43,12 +42,12 @@
                         android:id="@+id/activity_main_editTextEmail"
                         android:layout_width="225dp"
                         android:layout_height="50dp"
+                        android:autofillHints="@string/hint_email"
                         android:background="@drawable/custom_input"
                         android:drawableStart="@drawable/ic_email"
                         android:drawablePadding="12dp"
                         android:ems="10"
                         android:hint="@string/hint_email"
-                        android:autofillHints="@string/hint_email"
                         android:inputType="textEmailAddress"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp" />
@@ -58,12 +57,12 @@
                         android:layout_width="225dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="20dp"
+                        android:autofillHints="@string/hint_password"
                         android:background="@drawable/custom_input"
                         android:drawableStart="@drawable/ic_password"
                         android:drawablePadding="12dp"
                         android:ems="10"
                         android:hint="@string/hint_password"
-                        android:autofillHints="@string/hint_password"
                         android:inputType="textPassword"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp" />

@@ -29,14 +29,14 @@ public class CountryStateCityApi extends AsyncTask<String, Void, Void> {
     protected Void doInBackground(String... args) {
 
         switch (args[0]) {
-            case "get_token_and_countries":
-                sendCountriesRequest("country","");
+            case "get_countries":
+                sendRequest("country", "");
                 break;
             case "get_states":
-                sendCountriesRequest("state", args[1]);
+                sendRequest("state", args[1]);
                 break;
             case "get_cities":
-                sendCountriesRequest("city", args[1]);
+                sendRequest("city", args[1]);
                 break;
         }
 
@@ -44,7 +44,7 @@ public class CountryStateCityApi extends AsyncTask<String, Void, Void> {
         return null;
     }
 
-    private void sendCountriesRequest(String option, String input) {
+    private void sendRequest(String option, String input) {
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -86,7 +86,7 @@ public class CountryStateCityApi extends AsyncTask<String, Void, Void> {
                     Gson gson;
 
                     switch (option) {
-                        case "country" :
+                        case "country":
                             request = new Request.Builder()
                                     .url("https://www.universal-tutorial.com/api/countries/")
                                     .get()
@@ -115,11 +115,11 @@ public class CountryStateCityApi extends AsyncTask<String, Void, Void> {
                             CountryStructure countryStructure;
                             countryStructure = gson.fromJson(countriesData, CountryStructure.class);
 
-                            for (int i = 0; i < countryStructure.size(); i++){
+                            for (int i = 0; i < countryStructure.size(); i++) {
                                 countries.add(countryStructure.get(i).getCountry_name());
                             }
                             break;
-                        case "state" :
+                        case "state":
                             request = new Request.Builder()
                                     .url("https://www.universal-tutorial.com/api/states/" + input)
                                     .get()
@@ -148,11 +148,11 @@ public class CountryStateCityApi extends AsyncTask<String, Void, Void> {
                             StateStructure stateStructure;
                             stateStructure = gson.fromJson(statesData, StateStructure.class);
 
-                            for (int i = 0; i < stateStructure.size(); i++){
+                            for (int i = 0; i < stateStructure.size(); i++) {
                                 states.add(stateStructure.get(i).getState_name());
                             }
                             break;
-                        case "city" :
+                        case "city":
                             request = new Request.Builder()
                                     .url("https://www.universal-tutorial.com/api/cities/" + input)
                                     .get()
@@ -181,7 +181,7 @@ public class CountryStateCityApi extends AsyncTask<String, Void, Void> {
                             CityStructure cityStructure;
                             cityStructure = gson.fromJson(cityData, CityStructure.class);
 
-                            for (int i = 0; i < cityStructure.size(); i++){
+                            for (int i = 0; i < cityStructure.size(); i++) {
                                 cities.add(cityStructure.get(i).getCity_name());
                             }
                             break;
@@ -196,107 +196,7 @@ public class CountryStateCityApi extends AsyncTask<String, Void, Void> {
         thread.start();
     }
 
-    private void sendStateRequest(String country) {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Response response = null;
 
-                    String jsonToken = "";
-
-                    OkHttpClient client = new OkHttpClient();
-
-                    Request request = new Request.Builder()
-                            .url("https://www.universal-tutorial.com/api/getaccesstoken")
-                            .get()
-                            .addHeader("Accept", "application/json")
-                            .addHeader("api-token", "i9JhcrlEoZuYXT0VQWcveQuoSxECS5oqWLHg4igac6oGeauwR04mq32O10MSoKoqRn4")
-                            .addHeader("user-email", "disturbedwakeup@yahoo.com")
-                            .build();
-
-                    try {
-                        response = client.newCall(request).execute();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    while (!response.isSuccessful())
-                        Thread.sleep(500);
-
-                    try {
-                        jsonToken = response.body().string();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    client = new OkHttpClient();
-
-                    JSONObject jsonObject = new JSONObject(jsonToken);
-
-                    String token = jsonObject.getString("auth_token");
-
-
-
-
-                } catch (InterruptedException | JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        thread.start();
-    }
-
-    private void sendCityRequest(String state) {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Response response = null;
-
-                    String jsonToken = "";
-
-                    OkHttpClient client = new OkHttpClient();
-
-                    Request request = new Request.Builder()
-                            .url("https://www.universal-tutorial.com/api/getaccesstoken")
-                            .get()
-                            .addHeader("Accept", "application/json")
-                            .addHeader("api-token", "i9JhcrlEoZuYXT0VQWcveQuoSxECS5oqWLHg4igac6oGeauwR04mq32O10MSoKoqRn4")
-                            .addHeader("user-email", "disturbedwakeup@yahoo.com")
-                            .build();
-
-                    try {
-                        response = client.newCall(request).execute();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    while (!response.isSuccessful())
-                        Thread.sleep(500);
-
-                    try {
-                        jsonToken = response.body().string();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    client = new OkHttpClient();
-
-                    JSONObject jsonObject = new JSONObject(jsonToken);
-
-                    String token = jsonObject.getString("auth_token");
-
-
-
-
-                } catch (InterruptedException | JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        thread.start();
-    }
 
 
     public static List<String> getCountries() {

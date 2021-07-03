@@ -6,6 +6,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import reytax.project.eventapp.authentication.RegisterActivity;
+
 public abstract class FirebaseInitialization {
 
     private static FirebaseAuth firebaseAuth;

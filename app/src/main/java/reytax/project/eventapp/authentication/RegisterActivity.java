@@ -28,6 +28,7 @@ import reytax.project.eventapp.R;
 import reytax.project.eventapp.utils.activity.RegexVerification;
 import reytax.project.eventapp.utils.activity.Scrollfunction;
 import reytax.project.eventapp.utils.firebase.FirebaseInitialization;
+import reytax.project.eventapp.utils.firebase.UserDataManager;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -58,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextUsername.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
+                if (hasFocus)
                     Scrollfunction.scrollDown(scrollView);
             }
         });
@@ -66,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
+                if (hasFocus)
                     Scrollfunction.scrollDown(scrollView);
             }
         });
@@ -74,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
+                if (hasFocus)
                     Scrollfunction.scrollDown(scrollView);
             }
         });
@@ -95,58 +96,57 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void fireBaseRegistration(){
-        final String email,username,password;
+    private void fireBaseRegistration() {
+        final String email, username, password;
         username = editTextUsername.getText().toString().trim();
         password = editTextPassword.getText().toString().trim();
         email = editTextEmail.getText().toString().trim();
 
         boolean validData = true;
 
-        if(!RegexVerification.isValidUsername(username)){
+        if (!RegexVerification.isValidUsername(username)) {
             editTextUsername.setError("Please enter a valid username: \n 1. Between 6 and 12 characters. \n 2. Use only letters and numbers.");
             validData = false;
         }
-        if(!RegexVerification.isValidPassword(password))
-        {
+        if (!RegexVerification.isValidPassword(password)) {
             editTextPassword.setError("Please enter a valid password:\n 1. Between 8 and 15 characters.\n 2. At least one upper and one lower case letter.\n 3. At least a number.");
             validData = false;
         }
-        if(!RegexVerification.isValidEmail(email)){
+        if (!RegexVerification.isValidEmail(email)) {
             editTextEmail.setError("Please enter a valid email.");
             validData = false;
         }
-        if(validData == false){
+        if (validData == false) {
             return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
 
-        FirebaseInitialization.getFirebaseAuth().createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        FirebaseInitialization.getFirebaseAuth().createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     FirebaseInitialization.initialize();
                     FirebaseInitialization.getFirebaseUser().sendEmailVerification();
                     firebaseFirestore = FirebaseFirestore.getInstance();
-                    Map<String,Object> user = new HashMap<>();
+                    Map<String, Object> user = new HashMap<>();
                     DocumentReference documentReference = firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid());
-                    user.put("email",email);
-                    user.put("username",username);
-                    user.put("firstname",getResources().getString(R.string.text_empty));
-                    user.put("lastname",getResources().getString(R.string.text_empty));
-                    user.put("phonenumber",getResources().getString(R.string.text_empty));
-                    user.put("country",getResources().getString(R.string.text_empty));
-                    user.put("state",getResources().getString(R.string.text_empty));
-                    user.put("city",getResources().getString(R.string.text_empty));
-                    user.put("description",getResources().getString(R.string.text_empty));
-                    user.put("profileimage",getResources().getString(R.string.text_empty));
-                    user.put("eventscount",0);
-                    user.put("uid",FirebaseInitialization.getFirebaseUser().getUid());
+                    user.put("email", email);
+                    user.put("username", username);
+                    user.put("firstname", getResources().getString(R.string.text_empty));
+                    user.put("lastname", getResources().getString(R.string.text_empty));
+                    user.put("phonenumber", getResources().getString(R.string.text_empty));
+                    user.put("country", getResources().getString(R.string.text_empty));
+                    user.put("state", getResources().getString(R.string.text_empty));
+                    user.put("city", getResources().getString(R.string.text_empty));
+                    user.put("description", getResources().getString(R.string.text_empty));
+                    user.put("profileimage", getResources().getString(R.string.text_empty));
+                    user.put("eventscount", 0);
+                    user.put("uid", FirebaseInitialization.getFirebaseUser().getUid());
                     documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(RegisterActivity.this,"Account created. Please verify your email.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Account created. Please verify your email.", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.INVISIBLE);
                             startActivity(new Intent(context, MainActivity.class));
                             finish();
@@ -154,13 +154,12 @@ public class RegisterActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(RegisterActivity.this,"Error creating the account.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Error creating the account.", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     });
-                }
-                else{
-                    Toast.makeText(RegisterActivity.this,"Failed Creation",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Failed Creation", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }

@@ -24,7 +24,7 @@ import reytax.project.eventapp.utils.firebase.EventUploadManager;
  * Use the {@link CreateEventPageThreeOnsiteFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CreateEventPageThreeOnsiteFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
+public class CreateEventPageThreeOnsiteFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -132,10 +132,9 @@ public class CreateEventPageThreeOnsiteFragment extends Fragment implements Date
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String date = null;
         date = dayOfMonth + "/" + month + "/" + year;
-        if(dateOption == 1){
+        if (dateOption == 1) {
             editTextDateStart.setText(date);
-        }
-        else {
+        } else {
             editTextDateEnd.setText(date);
         }
     }

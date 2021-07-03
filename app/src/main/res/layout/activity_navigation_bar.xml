@@ -9,7 +9,7 @@
     tools:openDrawer="end">
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/activity_menu_screen_navigationView"
+        android:id="@+id/activity_navigation_bar_navigationView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -23,7 +23,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/activity_menu_screen_toolbar"
+            android:id="@+id/activity_navigation_bar_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/green"
@@ -43,7 +43,7 @@
 
 
                 <TextView
-                    android:id="@+id/activity_menu_screen_textViewTitle"
+                    android:id="@+id/activity_navigation_bar_textViewTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_eventapp"
@@ -55,10 +55,11 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.appcompat.widget.Toolbar>
+
         <FrameLayout
+            android:id="@+id/activity_navigation_bar_frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/content_frame"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

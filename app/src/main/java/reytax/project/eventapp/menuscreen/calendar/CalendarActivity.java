@@ -21,22 +21,21 @@ public class CalendarActivity extends NavigationBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.activity_navigation_bar_frameLayout);
         getLayoutInflater().inflate(R.layout.activity_calendar, contentFrameLayout);
 
         buttonParticipation = findViewById(R.id.activity_calendar_buttonParticipation);
         buttonCalendar = findViewById(R.id.activity_calendar_buttonCalendar);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalendarOneFragment()).commit();
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.activity_calendar_frameLayout, new CalendarOneFragment()).commit();
 
 
         buttonParticipation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currentFragment == 2){
+                if (currentFragment == 2) {
                     currentFragment = 1;
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalendarOneFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.activity_calendar_frameLayout, new CalendarOneFragment()).commit();
                 }
 
             }
@@ -45,9 +44,9 @@ public class CalendarActivity extends NavigationBarActivity {
         buttonCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currentFragment == 1){
+                if (currentFragment == 1) {
                     currentFragment = 2;
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CalendarTwoFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.activity_calendar_frameLayout, new CalendarTwoFragment()).commit();
                 }
             }
         });

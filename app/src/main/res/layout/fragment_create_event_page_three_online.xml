@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menuscreen.event.create.CreateEventPageThreeOnlineFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".menuscreen.event.create.CreateEventPageThreeOnlineFragment">
 
     <ScrollView
         android:layout_width="match_parent"

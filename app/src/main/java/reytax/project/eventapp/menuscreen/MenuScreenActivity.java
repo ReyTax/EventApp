@@ -23,13 +23,13 @@ import reytax.project.eventapp.menuscreen.user.search.SearchUserActivity;
 
 public class MenuScreenActivity extends NavigationBarActivity {
 
-    private CardView cardViewCreateEvent, cardViewSearchEvent, cardViewSearchUser, cardViewFriendList , cardViewCalendar;
+    private CardView cardViewCreateEvent, cardViewSearchEvent, cardViewSearchUser, cardViewFriendList, cardViewCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.activity_navigation_bar_frameLayout);
         getLayoutInflater().inflate(R.layout.activity_menu_screen, contentFrameLayout);
 
         cardViewCreateEvent = findViewById(R.id.activity_menu_screen_cardViewAddEvent);

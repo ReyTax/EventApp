@@ -11,8 +11,8 @@ import java.util.logging.Handler;
 
 public abstract class Scrollfunction extends Activity {
 
-    public static void scrollDown(ScrollView scrollView){
-        Thread thread = new Thread(){
+    public static void scrollDown(ScrollView scrollView) {
+        Thread thread = new Thread() {
             @Override
             public void run() {
                 try {
@@ -26,8 +26,8 @@ public abstract class Scrollfunction extends Activity {
         thread.start();
     }
 
-    public static void scrollFocus(ScrollView scrollView, View view){
-        Thread thread = new Thread(){
+    public static void scrollFocus(ScrollView scrollView, View view) {
+        Thread thread = new Thread() {
             @Override
             public void run() {
                 try {
@@ -35,7 +35,7 @@ public abstract class Scrollfunction extends Activity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                scrollView.scrollTo(0, (int) view.getY()-100);
+                scrollView.scrollTo(0, (int) view.getY() - 100);
             }
         };
         thread.start();

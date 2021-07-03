@@ -35,7 +35,7 @@ public class SearchEventActivity extends NavigationBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.activity_navigation_bar_frameLayout);
         getLayoutInflater().inflate(R.layout.activity_search_event, contentFrameLayout);
         context = this;
 
@@ -46,9 +46,8 @@ public class SearchEventActivity extends NavigationBarActivity {
         Query query = firebaseFirestore.collection("events").orderBy("creationDate", Query.Direction.DESCENDING);
 
         if (getIntent().getStringExtra("uid") != null) {
-            query = firebaseFirestore.collection("events").orderBy("creationDate", Query.Direction.DESCENDING).whereEqualTo("uid",getIntent().getStringExtra("uid"));
+            query = firebaseFirestore.collection("events").orderBy("creationDate", Query.Direction.DESCENDING).whereEqualTo("uid", getIntent().getStringExtra("uid"));
         }
-
 
 
         FirestoreRecyclerOptions<EventStructure> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<EventStructure>().setQuery(query, EventStructure.class).build();

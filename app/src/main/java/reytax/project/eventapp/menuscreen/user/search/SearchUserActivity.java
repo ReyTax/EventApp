@@ -39,7 +39,7 @@ public class SearchUserActivity extends NavigationBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.activity_navigation_bar_frameLayout);
         getLayoutInflater().inflate(R.layout.activity_search_user, contentFrameLayout);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -64,14 +64,14 @@ public class SearchUserActivity extends NavigationBarActivity {
                 userViewHolder.textViewUsername.setText(userStructure.getUsername());
                 userViewHolder.textViewCountry.setText(userStructure.getCountry());
 
-                if(userStructure.getProfileimage().equals("true")){
-                    StorageReference image = FirebaseInitialization.getStorageReference().child("images/"+ userStructure.getUid());
+                if (userStructure.getProfileimage().equals("true")) {
+                    StorageReference image = FirebaseInitialization.getStorageReference().child("images/" + userStructure.getUid());
                     final long ONE_MEGABYTE = 1024 * 1024;
                     image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
                         public void onSuccess(byte[] bytes) {
                             userViewHolder.bytes = bytes;
-                            ImageManager.loadProfileImage(userViewHolder.imageViewProfilePicture,userViewHolder.bytes);
+                            ImageManager.loadProfileImage(userViewHolder.imageViewProfilePicture, userViewHolder.bytes);
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -88,14 +88,14 @@ public class SearchUserActivity extends NavigationBarActivity {
                         Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                         intent.putExtra("uid", userStructure.getUid());
                         intent.putExtra("username", userStructure.getUsername());
-                        intent.putExtra("firstname",userStructure.getFirstname());
-                        intent.putExtra("lastname",userStructure.getLastname());
-                        intent.putExtra("country",userStructure.getCountry());
-                        intent.putExtra("city",userStructure.getCity());
-                        intent.putExtra("description",userStructure.getDescription());
-                        intent.putExtra("profileimage",userStructure.getProfileimage());
-                        intent.putExtra("eventscount",userStructure.getEventscount());
-                        intent.putExtra("bytes",userViewHolder.bytes);
+                        intent.putExtra("firstname", userStructure.getFirstname());
+                        intent.putExtra("lastname", userStructure.getLastname());
+                        intent.putExtra("country", userStructure.getCountry());
+                        intent.putExtra("city", userStructure.getCity());
+                        intent.putExtra("description", userStructure.getDescription());
+                        intent.putExtra("profileimage", userStructure.getProfileimage());
+                        intent.putExtra("eventscount", userStructure.getEventscount());
+                        intent.putExtra("bytes", userViewHolder.bytes);
                         startActivity(intent);
                     }
                 });
@@ -106,7 +106,6 @@ public class SearchUserActivity extends NavigationBarActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(firestoreRecyclerAdapter);
-
 
 
     }

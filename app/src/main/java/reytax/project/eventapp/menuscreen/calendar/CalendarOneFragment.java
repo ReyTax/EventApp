@@ -102,7 +102,7 @@ public class CalendarOneFragment extends Fragment {
 
 
                 RecyclerView recyclerView = view.findViewById(R.id.fragment_calendar_one_recyclerView);
-                Query query = firebaseFirestore.collection("events").whereIn("uidEvent",uidEvents);
+                Query query = firebaseFirestore.collection("events").whereIn("uidEvent", uidEvents);
                 FirestoreRecyclerOptions<EventStructure> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<EventStructure>().setQuery(query, EventStructure.class).build();
 
                 FirestoreRecyclerAdapter firestoreRecyclerAdapter = new FirestoreRecyclerAdapter<EventStructure, CalendarOneFragment.EventViewHolder>(firestoreRecyclerOptions) {

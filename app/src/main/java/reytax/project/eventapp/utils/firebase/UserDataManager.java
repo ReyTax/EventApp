@@ -10,12 +10,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.StorageReference;
 
+import reytax.project.eventapp.authentication.MainActivity;
+import reytax.project.eventapp.authentication.RegisterActivity;
+import reytax.project.eventapp.authentication.ResetPasswordActivity;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class UserDataManager {
 
-    private static String usernamelocal = "";
+
     private static String firstnamelocal = "";
     private static String lastnamelocal = "";
     private static String countrylocal = "";
@@ -26,7 +30,7 @@ public abstract class UserDataManager {
     private static String profileimagelocal = "";
     private static int eventscountLocal = 0;
     private static byte[] bytesProfileImagelocal;
-
+    private static String usernamelocal = "";
     private static String username = "";
     private static String firstname = "";
     private static String lastname = "";
@@ -47,7 +51,7 @@ public abstract class UserDataManager {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (!documentSnapshot.getData().isEmpty()) {
                     Map<String, Object> userData = documentSnapshot.getData();
-                    setLocalProfileData(userData.get("username").toString(), userData.get("firstname").toString(), userData.get("lastname").toString(), userData.get("country").toString(), userData.get("state").toString() ,userData.get("city").toString(), userData.get("phonenumber").toString(), userData.get("description").toString(), Integer.parseInt(userData.get("eventscount").toString()));
+                    setLocalProfileData(userData.get("username").toString(), userData.get("firstname").toString(), userData.get("lastname").toString(), userData.get("country").toString(), userData.get("state").toString(), userData.get("city").toString(), userData.get("phonenumber").toString(), userData.get("description").toString(), Integer.parseInt(userData.get("eventscount").toString()));
                     profileimagelocal = userData.get("profileimage").toString();
                     bytesProfileImagelocal = null;
 
@@ -72,7 +76,7 @@ public abstract class UserDataManager {
         });
     }
 
-    public static void incrementEventsCountLocal(){
+    public static void incrementEventsCountLocal() {
         eventscountLocal++;
     }
 

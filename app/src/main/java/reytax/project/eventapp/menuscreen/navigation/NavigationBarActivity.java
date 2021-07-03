@@ -45,8 +45,8 @@ public class NavigationBarActivity extends AppCompatActivity implements Navigati
         firebaseAuth = FirebaseAuth.getInstance();
 
         drawerLayout = findViewById(R.id.activity_menu_screen_drawerLayout);
-        navigationView = findViewById(R.id.activity_menu_screen_navigationView);
-        toolbar = findViewById(R.id.activity_menu_screen_toolbar);
+        navigationView = findViewById(R.id.activity_navigation_bar_navigationView);
+        toolbar = findViewById(R.id.activity_navigation_bar_toolbar);
 
         setSupportActionBar(toolbar);
         navigationView.bringToFront();

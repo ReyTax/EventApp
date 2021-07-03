@@ -8,17 +8,22 @@ public class InputFilterParticipant implements InputFilter {
     private final int MIN_PARTICIPANTS = 1, MAX_PARTICIPANTS = 1000;
 
     @Override
-    public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+    public CharSequence filter(CharSequence charSequence, int first, int last, Spanned spanned, int datafist, int datalast) {
         try {
-            String newVal = dest.subSequence(0, dstart) + source.subSequence(start, end).toString() + dest.subSequence(dend, dest.length());
-            int input = Integer.parseInt(newVal);
+            String value = spanned.subSequence(0, datafist) + charSequence.subSequence(first, last).toString() + spanned.subSequence(datalast, spanned.length());
+            int input = Integer.parseInt(value);
             if (isInRange(MIN_PARTICIPANTS, MAX_PARTICIPANTS, input))
                 return null;
-        } catch (NumberFormatException nfe) { }
+        } catch (NumberFormatException nfe) {
+
+        }
+
         return "";
     }
 
-    private boolean isInRange(int a, int b, int c) {
-        return b > a ? c >= a && c <= b : c >= b && c <= a;
+    private boolean isInRange(int firstValue, int secondValue, int input) {
+
+        return secondValue > firstValue ? input >= firstValue && input <= secondValue : input >= secondValue && input <= firstValue;
+
     }
 }

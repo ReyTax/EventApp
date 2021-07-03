@@ -46,7 +46,7 @@ public class ShowEventActivity extends NavigationBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.activity_navigation_bar_frameLayout);
         getLayoutInflater().inflate(R.layout.activity_show_event, contentFrameLayout);
 
         textViewTitle = findViewById(R.id.activity_show_event_textViewTitle);
@@ -64,7 +64,7 @@ public class ShowEventActivity extends NavigationBarActivity {
         progressBarParticipantsNumber = findViewById(R.id.activity_show_event_progressBarParticipantsNumber);
         buttonParticipate = findViewById(R.id.activity_show_event_buttonParticipate);
 
-        loadEventData(getIntent().getStringExtra("title"), getIntent().getStringExtra("username"), getIntent().getStringExtra("description"), getIntent().getStringExtra("country"), getIntent().getStringExtra("state"), getIntent().getStringExtra("city"), getIntent().getStringExtra("address"), getIntent().getStringExtra("contact"), getIntent().getStringExtra("dateStart"),getIntent().getStringExtra("dateEnd"),getIntent().getStringExtra("participantsNumber"),getIntent().getIntExtra("currentParticipantsNumber",0));
+        loadEventData(getIntent().getStringExtra("title"), getIntent().getStringExtra("username"), getIntent().getStringExtra("description"), getIntent().getStringExtra("country"), getIntent().getStringExtra("state"), getIntent().getStringExtra("city"), getIntent().getStringExtra("address"), getIntent().getStringExtra("contact"), getIntent().getStringExtra("dateStart"), getIntent().getStringExtra("dateEnd"), getIntent().getStringExtra("participantsNumber"), getIntent().getIntExtra("currentParticipantsNumber", 0));
         UserDataManager.loadUserData(getIntent().getStringExtra("uid"));
 
         cardViewUser.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +83,7 @@ public class ShowEventActivity extends NavigationBarActivity {
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if(documentSnapshot.exists()){
+                if (documentSnapshot.exists()) {
                     buttonParticipate.setEnabled(false);
                     buttonParticipate.setBackgroundColor(getColor(R.color.grey));
                 }
@@ -101,8 +101,6 @@ public class ShowEventActivity extends NavigationBarActivity {
                 }
             }
         });
-
-
 
 
         buttonParticipate.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +129,6 @@ public class ShowEventActivity extends NavigationBarActivity {
     }
 
 
-
     private void loadEventData(String title, String username, String description, String country, String state, String city, String address, String contact, String dateStart, String dateEnd, String participantsNumber, int currentParticipantsNumber) {
         textViewTitle.setText(title);
         textViewUsername.setText("Created by " + username);
@@ -144,8 +141,8 @@ public class ShowEventActivity extends NavigationBarActivity {
         textViewDateStart.setText(dateStart);
         textViewDateEnd.setText(dateEnd);
         textViewParticipantsNumber.setText(currentParticipantsNumber + "/" + participantsNumber);
-        if(!participantsNumber.equals("")){
-            double progressValue = (double) currentParticipantsNumber/Integer.parseInt(participantsNumber) * 100;
+        if (!participantsNumber.equals("")) {
+            double progressValue = (double) currentParticipantsNumber / Integer.parseInt(participantsNumber) * 100;
             progressBarParticipantsNumber.setProgress((int) progressValue);
         }
 

@@ -54,25 +54,25 @@ public abstract class EventUploadManager {
         dateEnd = dataEndLocal;
     }
 
-    public static void uploadEventToFirebase(){
+    public static void uploadEventToFirebase() {
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-        Map<String,Object> event = new HashMap<>();
+        Map<String, Object> event = new HashMap<>();
         String uid = UUID.randomUUID().toString();
         DocumentReference documentReferenceEvents = firebaseFirestore.collection("events").document(uid);
 
         firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid()).update("eventscount", FieldValue.increment(1));
-        event.put("eventType",eventType);
-        event.put("title",title);
-        event.put("participantsNumber",participantsNumber);
-        event.put("currentParticipantsNumber",0);
-        event.put("description",description);
-        event.put("country",country);
-        event.put("state",state);
-        event.put("city",city);
-        event.put("address",address);
-        event.put("contact",contact);
-        event.put("dateStart",dateStart);
-        event.put("dateEnd",dateEnd);
+        event.put("eventType", eventType);
+        event.put("title", title);
+        event.put("participantsNumber", participantsNumber);
+        event.put("currentParticipantsNumber", 0);
+        event.put("description", description);
+        event.put("country", country);
+        event.put("state", state);
+        event.put("city", city);
+        event.put("address", address);
+        event.put("contact", contact);
+        event.put("dateStart", dateStart);
+        event.put("dateEnd", dateEnd);
         event.put("uid", FirebaseInitialization.getFirebaseUser().getUid());
         event.put("username", UserDataManager.getUsernamelocal());
         event.put("creationDate", Calendar.getInstance().getTime());

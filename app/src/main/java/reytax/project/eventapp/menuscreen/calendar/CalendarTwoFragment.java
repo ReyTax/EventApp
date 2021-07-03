@@ -113,9 +113,9 @@ public class CalendarTwoFragment extends Fragment {
                 for (DocumentSnapshot document : documents) {
 
 
-                    List<Date> dates = getDates(document.get("dateStart").toString(),document.get("dateEnd").toString());
+                    List<Date> dates = getDatesBetween(document.get("dateStart").toString(), document.get("dateEnd").toString());
 
-                    for(Date date:dates){
+                    for (Date date : dates) {
                         long milliTime = date.getTime();
                         Event event = new Event(Color.GREEN, milliTime, document.get("title"));
                         compactCalendarView.addEvent(event);
@@ -128,7 +128,7 @@ public class CalendarTwoFragment extends Fragment {
                     public void onDayClick(Date dateClicked) {
                         List<Event> events = compactCalendarView.getEvents(dateClicked);
                         linearLayout.removeAllViews();
-                        for(Event event:events){
+                        for (Event event : events) {
                             System.out.println(event.getData().toString());
 
                             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -163,40 +163,39 @@ public class CalendarTwoFragment extends Fragment {
             }
 
 
-
         });
 
         return view;
     }
 
-    private List<Date> getDates(String dateString1, String dateString2)
-    {
+    private List<Date> getDatesBetween(String dateStart, String dateEnd) {
         ArrayList<Date> dates = new ArrayList<Date>();
-        DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
 
-        Date date1 = null;
-        Date date2 = null;
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date dateOne = null;
+        Date dateTwo = null;
 
         try {
-            date1 = df1 .parse(dateString1);
-            date2 = df1 .parse(dateString2);
+            dateOne = dateFormat.parse(dateStart);
+            dateTwo = dateFormat.parse(dateEnd);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        Calendar cal1 = Calendar.getInstance();
-        cal1.setTime(date1);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateOne);
 
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(dateTwo);
 
-        Calendar cal2 = Calendar.getInstance();
-        cal2.setTime(date2);
-
-        while(!cal1.after(cal2))
-        {
-            dates.add(cal1.getTime());
-            cal1.add(Calendar.DATE, 1);
+        while (!calendar.after(calendar2)) {
+            dates.add(calendar.getTime());
+            calendar.add(Calendar.DATE, 1);
         }
         return dates;
+
     }
+
 
 }

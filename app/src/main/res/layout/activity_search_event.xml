@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menuscreen.event.search.SearchEventActivity"
-    android:background="@color/bright_grey">
+    android:background="@color/bright_grey"
+    tools:context=".menuscreen.event.search.SearchEventActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_search_event_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bright_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/bright_grey"/>
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

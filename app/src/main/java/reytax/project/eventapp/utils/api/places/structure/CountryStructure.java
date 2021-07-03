@@ -10,7 +10,7 @@ public class CountryStructure extends ArrayList<CountryStructure.Container> {
         private String country_short_name;
         private String country_phone_code;
 
-        public Container(String country_name,String country_short_name,String country_phone_code) {
+        public Container(String country_name, String country_short_name, String country_phone_code) {
             this.country_name = country_name;
             this.country_short_name = country_short_name;
             this.country_phone_code = country_phone_code;

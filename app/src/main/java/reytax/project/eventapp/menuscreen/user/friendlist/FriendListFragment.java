@@ -103,13 +103,13 @@ public class FriendListFragment extends Fragment {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 List<DocumentSnapshot> documents = queryDocumentSnapshots.getDocuments();
                 for (DocumentSnapshot document : documents) {
-                    if(document.get("friendConfirmation").equals("true"))
+                    if (document.get("friendConfirmation").equals("true"))
                         uidFriends.add(document.getId());
                 }
 
                 RecyclerView recyclerViewFriends = view.findViewById(R.id.fragment_friend_list_recyclerViewFriends);
 
-                Query query = firebaseFirestore.collection("users").whereIn("uid",uidFriends);
+                Query query = firebaseFirestore.collection("users").whereIn("uid", uidFriends);
 
                 FirestoreRecyclerOptions<UserStructure> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<UserStructure>().setQuery(query, UserStructure.class).build();
                 FirestoreRecyclerAdapter firestoreRecyclerAdapterFriends = new FirestoreRecyclerAdapter<UserStructure, FriendListFragment.UserViewHolder>(firestoreRecyclerOptions) {
@@ -125,14 +125,14 @@ public class FriendListFragment extends Fragment {
                     protected void onBindViewHolder(@NonNull FriendListFragment.UserViewHolder userViewHolder, int i, @NonNull UserStructure userStructure) {
                         userViewHolder.textViewUsername.setText(userStructure.getUsername());
 
-                        if(userStructure.getProfileimage().equals("true")){
-                            StorageReference image = FirebaseInitialization.getStorageReference().child("images/"+ userStructure.getUid());
+                        if (userStructure.getProfileimage().equals("true")) {
+                            StorageReference image = FirebaseInitialization.getStorageReference().child("images/" + userStructure.getUid());
                             final long ONE_MEGABYTE = 1024 * 1024;
                             image.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                 @Override
                                 public void onSuccess(byte[] bytes) {
                                     userViewHolder.bytes = bytes;
-                                    ImageManager.loadProfileImage(userViewHolder.imageViewProfilePicture,userViewHolder.bytes);
+                                    ImageManager.loadProfileImage(userViewHolder.imageViewProfilePicture, userViewHolder.bytes);
 
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -149,14 +149,14 @@ public class FriendListFragment extends Fragment {
                                 Intent intent = new Intent(getActivity().getApplicationContext(), ProfileActivity.class);
                                 intent.putExtra("uid", userStructure.getUid());
                                 intent.putExtra("username", userStructure.getUsername());
-                                intent.putExtra("firstname",userStructure.getFirstname());
-                                intent.putExtra("lastname",userStructure.getLastname());
-                                intent.putExtra("country",userStructure.getCountry());
-                                intent.putExtra("city",userStructure.getCity());
-                                intent.putExtra("description",userStructure.getDescription());
-                                intent.putExtra("profileimage",userStructure.getProfileimage());
-                                intent.putExtra("eventscount",userStructure.getEventscount());
-                                intent.putExtra("bytes",userViewHolder.bytes);
+                                intent.putExtra("firstname", userStructure.getFirstname());
+                                intent.putExtra("lastname", userStructure.getLastname());
+                                intent.putExtra("country", userStructure.getCountry());
+                                intent.putExtra("city", userStructure.getCity());
+                                intent.putExtra("description", userStructure.getDescription());
+                                intent.putExtra("profileimage", userStructure.getProfileimage());
+                                intent.putExtra("eventscount", userStructure.getEventscount());
+                                intent.putExtra("bytes", userViewHolder.bytes);
                                 startActivity(intent);
                             }
                         });
@@ -169,7 +169,7 @@ public class FriendListFragment extends Fragment {
                                 list.add(FirebaseInitialization.getFirebaseUser().getUid());
                                 list.add(userStructure.getUid());
                                 java.util.Collections.sort(list);
-                                intent.putExtra("uidChat", list.get(0)+list.get(1));
+                                intent.putExtra("uidChat", list.get(0) + list.get(1));
                                 intent.putExtra("usernameSender", UserDataManager.getUsername());
                                 intent.putExtra("usernameReceiver", userStructure.getUsername());
                                 startActivity(intent);

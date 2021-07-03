@@ -123,10 +123,9 @@ public class CreateEventPageThreeOnlineFragment extends Fragment implements Date
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String date = null;
         date = dayOfMonth + "/" + month + "/" + year;
-        if(dateOption == 1){
+        if (dateOption == 1) {
             editTextDateStart.setText(date);
-        }
-        else {
+        } else {
             editTextDateEnd.setText(date);
         }
     }

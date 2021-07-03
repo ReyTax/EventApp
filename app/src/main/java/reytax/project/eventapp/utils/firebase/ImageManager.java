@@ -18,12 +18,12 @@ import java.util.Map;
 
 public abstract class ImageManager {
 
-    public static void uploadProfileImage(byte[] bytes){
+    public static void uploadProfileImage(byte[] bytes) {
 
-        if(UserDataManager.getProfileimagelocal().equals("true")){
+        if (UserDataManager.getProfileimagelocal().equals("true")) {
             String userId = FirebaseInitialization.getFirebaseUser().getUid();
             StorageReference storageReference = FirebaseInitialization.getFirebaseStorage().getReference();
-            StorageReference image = storageReference.child("images/"+userId);
+            StorageReference image = storageReference.child("images/" + userId);
             image.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -33,8 +33,8 @@ public abstract class ImageManager {
                             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
                             DocumentReference documentReference;
                             documentReference = firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid());
-                            Map<String,Object> user = new HashMap<>();
-                            user.put("profileimage","true");
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("profileimage", "true");
                             documentReference.set(user, SetOptions.merge());
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -50,19 +50,18 @@ public abstract class ImageManager {
 
                 }
             });
-        }
-        else{
+        } else {
             String user = FirebaseInitialization.getFirebaseUser().getUid();
             StorageReference storageReference = FirebaseInitialization.getFirebaseStorage().getReference();
-            StorageReference image = storageReference.child("images/"+user);
+            StorageReference image = storageReference.child("images/" + user);
             image.putBytes(bytes).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
                     DocumentReference documentReference;
                     documentReference = firebaseFirestore.collection("users").document(FirebaseInitialization.getFirebaseUser().getUid());
-                    Map<String,Object> user = new HashMap<>();
-                    user.put("profileimage","true");
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("profileimage", "true");
                     documentReference.set(user, SetOptions.merge());
                     UserDataManager.setProfileimagelocal("true");
                 }
@@ -74,13 +73,12 @@ public abstract class ImageManager {
             });
 
 
-
         }
     }
 
-    public static void loadProfileImage(ImageView imageViewProfileImage, byte[] bytes){
-        if(bytes != null)
-            imageViewProfileImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes,0, bytes.length));
+    public static void loadProfileImage(ImageView imageViewProfileImage, byte[] bytes) {
+        if (bytes != null)
+            imageViewProfileImage.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
         imageViewProfileImage.getLayoutParams().height = 400;
         imageViewProfileImage.getLayoutParams().width = 400;
     }
